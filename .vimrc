@@ -130,8 +130,8 @@ set autoindent               " 自动对齐，继承前一行的缩进方式，�
 set backspace=2              " 设置退格键可用
 set cindent shiftwidth=4     " 自动缩进4空格，使用C样式的缩进
 set smartindent              " 智能自动缩进
-set ai!                      " 设置自动缩进
-set nu!                      " 显示行号
+set ai                       " 设置自动缩进
+set nu                       " 显示行号
 set noerrorbells             " 不让vim发出滴滴声
 set novisualbell             " 不要闪烁
 set showmatch                " 显示括号配对情况
@@ -358,6 +358,9 @@ vmap <S-up> :move '<-2<CR>gv
 " 使用空格键跳到下一个空格位置 [非编辑模式]
 "nmap <space> f 
 
+" 普通模式下回车，将光标后面的内容移至下一行
+nmap <CR> i<CR><ESC>k$
+
 " Alt + o 建立新行并留在非编辑模式
 nmap <A-o> o<ESC>
 
@@ -372,7 +375,7 @@ imap <A-i> <CR><ESC>kA
 "map <S-q><S-q> :q!<CR>:q!<CR>:q!<CR>
 
 " 在normal模式下先后按下 ,s 重新加载.vimrc配置文件
-nmap ,s :source $VIM\_vimrc<cr>
+nmap ,s :source ~/.vimrc<CR>
 
 " 将上下左右键映射为 Tab 或 Buffer 跳转
 "nmap <left> :tabprevious<cr>  "左一个Tab
@@ -412,8 +415,6 @@ nmap <silent> <C-down> <C-W><down>
 imap <silent> <F2> <esc>:set hlsearch!<CR>
 nmap <silent> <F2> :set hlsearch!<CR>
 
-" F3 切换粘贴模式切，切换打开/关闭自动缩进功，可以避免自动缩进的带来的格式影响
-"set pastetoggle=<F3>
 " F3 切换自动换行
 nmap <F3> :set wrap!<CR>
 imap <F3> <Esc>:set wrap!<CR>
@@ -422,9 +423,13 @@ imap <F3> <Esc>:set wrap!<CR>
 nmap <F4> :set nu!<CR>
 imap <F4> <Esc>:set nu!<CR>
 
-" F11全屏,F12还原窗口
+" F5 切换粘贴模式切，切换打开/关闭自动缩进功，可以避免自动缩进的带来的格式影响
+set pastetoggle=<F5>
+
+" F11 切换全屏
 map <F11> <Esc>:simalt ~x<CR>
-map <F12> <Esc>:set columns=80 lines=21<cr>
+" F12 还原窗口
+"map <F12> <Esc>:set columns=80 lines=21<cr>
 
 " 切换拼写检查，For VIM7 only
 "nmap <C-F11> :setlocal spell!<CR>
@@ -487,3 +492,4 @@ endfunc
 "map <c-r> :call RunCode()<CR>
 "imap <c-r> <ESC>:call RunCode()<CR>
 "vmap <c-r> <ESC>:call RunCode()<CR>
+
