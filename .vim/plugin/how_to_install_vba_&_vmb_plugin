@@ -1,0 +1,2 @@
+use vim open .vba or .vmb file, like [supertab.vba] and [tagbar.vmb], and execute:
+:so %
