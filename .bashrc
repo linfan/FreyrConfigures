@@ -18,7 +18,7 @@ alias dec-to-bin='~/Script/dec-to-bin.sh'
 alias dec-to-hex='~/Script/dec-to-hex.sh'
 alias hex-to-bin='~/Script/hex-to-bin.sh'
 alias hex-to-dec='~/Script/hex-to-dec.sh'
-alias mm="source ~/Script/create_and_compile_main_cc.sh"
+alias mm="source ~/Script/create-and-compile-main-cc.sh"
 
 QT_4_PATH=/home/freyr/.Qt4/bin
 QT_5_PATH=/home/freyr/.Qt5/5.0.1/gcc_64/bin
