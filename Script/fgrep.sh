@@ -1,11 +1,11 @@
 #!/bin/bash
-#File - find-string-in-files.sh
+#File - fgrep.sh
 #Author - Freyr Lin
 #Email - fan.lin.ext@nsn.com
 #Version - v1.0
 #Last modified - 2012/12/14
 
-USAGE='USAGE: find-string-in-files.sh "string_to_find" ["file_pattern"]'
+USAGE='USAGE: fgrep.sh "string_to_find" ["file_pattern"]'
 
 if [ $# -eq 1 ]; then
     echo "## RUN: grep -r -H -n --color=auto \"${1}\" *"
