@@ -12,6 +12,7 @@ alias c='clear'
 alias grep='grep --color=auto'
 alias ngrep='grep -n -H'
 alias fgrep='~/Script/fgrep.sh'
+alias pgrep="ps -ef | head -1; ps -ef | grep -v grep | grep --color=auto -i"
 alias bin-to-dec='~/Script/bin-to-dec.sh'
 alias bin-to-hex='~/Script/bin-to-hex.sh'
 alias dec-to-bin='~/Script/dec-to-bin.sh'
