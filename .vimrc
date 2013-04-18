@@ -1,13 +1,8 @@
 " ============================================================================
 "  Author: LinFan
 "  Email: linfan.china@gmail.com
-"  Date: 2013-03-20
+"  Date: 2013-04-18
 " ============================================================================
-
-
-" Ctrl + ]                   --转到函数定义
-" Ctrl + T                   --返回调用函数
-" Ctrl + E                   --一步加载语法模板和作者、时间信息
 
 " <C-P>                      --单词补全
 " <C-X><C-L>                 --整行补全
@@ -24,12 +19,6 @@
 " za                         --打开或关闭当前折叠
 " zM                         --关闭所有折叠
 " zR                         --打开所有折叠
-
-" :set syntax=cpp            --手动选择语法高亮 [或 :set filetype=cpp]
-
-" :%!xxd                     --转储二进制文件，以十六进制形式显示
-" :%!xxd -r                  --还原二进制文件
-
 
 " ---------- 主要插件详细用法说明 ---------------------
 
@@ -91,160 +80,147 @@
 " q                          --退出该插件
 
 
-" 将所有以.html结尾的文档以Django Template语法进行渲染
-" 本配置语句必须放在所有配置的最前面
+" Use Django Template format render .html file
+" This line must be put at the first line
 au BufNewFile,BufRead *.html setf htmldjango
 
 " ============================================================================
-" 显示设置
+" Display setting
 " ============================================================================
-" 配色方案
-"colorscheme evening         " 夜晚主题
-colorscheme blackboard       " 黑板主题
-"colorscheme koehler         " 矿灯主题
-"colorscheme elflord         " 精灵主题
+" Color scheme
+"colorscheme evening         " Dark night
+colorscheme blackboard       " Blackboard
+"colorscheme koehler         " Miner's lamp
+"colorscheme elflord         " Fairy
 
-"set background=dark         " 背景使用黑色
-set guifont=Monaco:h10       " 字体 && 字号
+"set background=dark         " Use black ground
+set guifont=Monaco:h10       " Font & size
 
-" 设置编码
-"set enc=chinese             " 设置编码为中文
+" Encode setting
+"set enc=chinese             " Use Chinese encode
 set fenc=utf-8
 set encoding=utf-8
 set fileencodings=utf-8,gbk,cp936,latin-1
 
-"set helplang=cn             " 设置帮助的语言为中文
-"set formatoptions=tcrqn     " 自动格式化
-"set linebreak               " 单词不要在断行处,包括中文
-"set formatoptions+=mM       " 正确处理中文字符的折行和拼接
+"set helplang=cn             " Use Chinese in help page
+"set formatoptions=tcrqn     " Auto-formating
+"set linebreak               " Don't break a line at the mid of a word
+"set formatoptions+=mM       " To handle Chinese correctly
 
 " ============================================================================
-" 编辑器基本设置
+" Editor basic setting
 " ============================================================================
-set tabstop=4                " 设置tab键的宽度
-set softtabstop=4            " 使用tab补充空格的跨度
-set shiftwidth=4             " 换行时行间交错使用4个空格
-"set smarttab                " 在行和段开始处使用制表符
-set expandtab                " 用空格代替制表符
-set autoindent               " 自动对齐，继承前一行的缩进方式，特别适用于多行注释
-set backspace=2              " 设置退格键可用
-set cindent shiftwidth=4     " 自动缩进4空格，使用C样式的缩进
-set smartindent              " 智能自动缩进
-set ai                       " 设置自动缩进
-set nu                       " 显示行号
-set noerrorbells             " 不让vim发出滴滴声
-set novisualbell             " 不要闪烁
-set showmatch                " 显示括号配对情况
-set matchtime=5              " 匹配括号高亮的时间（单位是十分之一秒）
-set mouse=a                  " 启用鼠标
-set ruler                    " 右下角显示光标位置的状态行
-set hlsearch                 " 开启高亮显示结果
-set incsearch                " 开启实时搜索功能
-set nowrapscan               " 搜索到文件两端时不重新搜索
-set nocompatible             " 关闭兼容模式
-"set vb t_vb=                " 关闭提示音，在Windows下会导致闪屏
-set hidden                   " 允许在有未保存的修改时切换缓冲区
-set list                     " 显示Tab符，使用一高亮竖线代替
+set nocompatible             " Disable vi compatible mode
+set tabstop=4                " Set tab width
+set softtabstop=4            " Tab align position
+set shiftwidth=4             " Use tab as 4 spaces
+set expandtab                " Use spaces instead of tab
+"set smarttab                 " Allow use real tab symbol at the begin/end of line
+set autoindent               " Auto-align to previous line when creating new line
+set backspace=2              " Make backspace working correctly
+set cindent shiftwidth=4     " Use c-style indent, 4 spaces
+set smartindent              " Use smart indent
+set ai                       " Use auto-indent
+set nu                       " Show line number
+set noerrorbells             " Disable belling when error operation
+set novisualbell             " Disable cursor winking
+set showmatch                " Show bracket match
+set matchtime=5              " Bracket match delay（Unit: 1/10 second）
+set mouse=a                  " Enable mouse (May cause uncompatible with tmux)
+set ruler                    " Show cursor position on bottom-right side
+set hlsearch                 " Enable search highlight
+set incsearch                " Enable real-time search match
+set nowrapscan               " Disable search from begin when reaching file end
+"set vb t_vb=                " Disable prompt tone (May cause screen twinkling on Windows)
+set hidden                   " Allow switch buffer while current buffer unsaved
+set list                     " Show tab symbol as a '|'
 set listchars=tab:\|\ ,
-set wildmenu                 " 增强模式中的命令行自动完成操作
-set clipboard=unnamed        " 默认使用系统剪切板
-"set whichwrap+=<,>,h,l      " 允许backspace和光标键跨越行边界
-set scrolloff=5              " 设定光标离窗口上下边界 5 行时窗口自动滚动
-"set ignorecase               " 搜索时忽略大小写
-set smartcase                "但在有一个或以上大写字母时,仍保持对大小写敏感
-set autoread                     " Set to auto read when a file is changed from the outside
+set wildmenu                 " Enhance command auto-complete
+set clipboard=unnamed        " Use system clipboard
+"set whichwrap+=<,>,h,l      " Enable cursor move to non-text area
+set scrolloff=5              " Scroll the window when cursor reach 5 lines approaching to the up/down edge
+"set ignorecase               " Use case insensitive search
+"set smartcase                " Use case sensitive search, if there is any upper case letter in search string
+set autoread                 " Quto re-read when file is changed from the outside
 
-syntax enable                " 打开语法高亮
-syntax on                    " 开启文件类型侦测
-filetype indent on           " 针对不同的文件类型采用不同的缩进格式
-filetype plugin on           " 针对不同的文件类型加载对应的插件
-filetype plugin indent on    " 启用自动补全
+syntax enable                " Enable syntax highlight
+syntax on                    " Enable syntax detect according to file type
+filetype indent on           " Enable plugin to change indent style according to file type
+filetype plugin on           " Enable plugin to detect file type
+filetype plugin indent on    " Enable auto-complete
 
-set writebackup              " 设置有缓存文件(临时备份文件,在文档保存后自动删除)
-set nobackup                 " 设置无备份文件
-set autochdir                " 设定文件浏览器目录为当前目录
-set nowrap                   " 设置不自动换行
-set foldlevel=100            " 禁止自动折叠
-set history=1000             " 记录历史的行数
-set winaltkeys=no            " Alt组合键不映射到菜单上
+set writebackup              " Enable cache file (Temporary backup file, remove when file closed correctly)
+set nobackup                 " Disable auto backup file
+set autochdir                " Set current folder as file browser path
+set nowrap                   " Disable line wrap
+set history=1000             " Maximal command number of history record
+set winaltkeys=no            " No use Alt-? key to open menu
 
-" 启用折叠
-set foldenable
-" 选择代码折叠类型
-"set foldmethod=manualset    " 手动折叠，或写为manual
-"set foldmethod=syntax       " 用语法高亮来定义折叠
-set foldmethod=indent        " 更多的缩进表示更高级别的折叠(这个似乎效果好一些)
-" 用空格键来开关折叠
+set foldenable               " Enable code-fold
+set foldlevel=100            " Maximal fold level
+" Fold type
+"set foldmethod=manualset    " manually fold only
+set foldmethod=syntax        " fold by code syntax
+"set foldmethod=indent       " fold by code indent
+" Use space to fold/unfold code
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 if has("gui_running")
-    au GUIEnter * simalt ~x  " 窗口启动时自动最大化
-    "winpos 20 20            " 指定窗口出现的位置，坐标原点在屏幕左上角
-    "set lines=20 columns=90 " 指定窗口大小，lines为高度，columns为宽度
-    "set guioptions-=m       " 隐藏菜单栏
-    "set guioptions-=T       " 隐藏工具栏
-    "set guioptions-=L       " 隐藏左侧滚动条
-    "set guioptions-=r       " 隐藏右侧滚动条
-    "set guioptions-=b       " 隐藏底部滚动条
-    "set showtabline=0       " 隐藏Tab栏
+    au GUIEnter * simalt ~x  " Maximize window when startup
+    "winpos 20 20            " Set window appear position, set to top-left corner
+    "set lines=20 columns=90 " Set window size, lines for heigh，columns for width
+    "set guioptions-=m       " Hide menu bar
+    "set guioptions-=T       " Hide tool bar
+    "set guioptions-=L       " Hide left scroll bar
+    "set guioptions-=r       " Hide right scroll bar
+    "set guioptions-=b       " Hide bottom scroll bar
+    "set showtabline=0       " Hide tab bar
     
-    " 解决菜单乱码
+    " Solve menu messy code
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
-    " 解决consle输出乱码
+    " Solve console output messy code
     language messages zh_CN.utf-8
 endif
 
 " ============================================================================
-" 状态栏设置
+" Status bar setting
 " ============================================================================
-set laststatus=2             " 开启状态栏信息
-set cmdheight=2              " 命令行的高度，默认为1，这里设为2
+set laststatus=2             " Enable status message
+set cmdheight=2              " Set status bar heigh to 2 (default is 1)
 
 " ============================================================================
-" 自动化脚本
+" Auto script
 " ============================================================================
-" TxtBrowser          高亮TXT文本文件
+" TxtBrowser -- Highlight txt file
 au BufRead,BufNewFile *.txt setlocal ft=txt
 
-" 每行超过120个的字符用下划线标示
+" Add underline on the 120th char on each line
 au BufRead,BufNewFile *.s,*.asm,*.h,*.c,*.cpp,*.cc,*.java,*.cs,*.erl,*.hs,*.sh,*.lua,*.pl,*.pm,*.php,*.py,*.rb,*.erb,*.vim,*.js,*.css,*.xml,*.html,*.xhtml 2match Underlined /.\%121v/
-"autocmd FileType c,cpp :match ErrorMsg /\%>80v.\+/
 
-" 打开文件时光标自动到上次退出该文件时的光标所在位置
+" Remember cursor position when quit
 autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal`\"" | endif
 
-" 突出显示当前行
+" Highlight current line
 "set cursorline
-" 高亮当前编辑的行
+" Highlight current line in edit mode only
 "autocmd InsertLeave * se nocul
 "autocmd InsertEnter * se cul
 
 " ============================================================================
-" 引号 && 括号自动匹配
+" quote & brackets auto-match
 " ============================================================================
 ":inoremap ( ()<ESC>i
-
 ":inoremap ) <c-r>=ClosePair(')')<CR>
-
 ":inoremap { {}<ESC>i
-
 ":inoremap } <c-r>=ClosePair('}')<CR>
-
 ":inoremap [ []<ESC>i
-
 ":inoremap ] <c-r>=ClosePair(']')<CR>
-
 ":inoremap < <><ESC>i
-
 ":inoremap > <c-r>=ClosePair('>')<CR>
-
 ":inoremap " ""<ESC>i
-
 ":inoremap ' ''<ESC>i
-
 ":inoremap ` ``<ESC>i
-
 "function ClosePair(char)
 "    if getline('.')[col('.') - 1] == a:char
 "        return "\<Right>"
@@ -253,9 +229,8 @@ autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal`\
 "    endif
 "endf
 
-
 " ============================================================================
-" MiniBufExplorer     多个文件切换 可使用鼠标双击相应文件名进行切换
+" MiniBufExplorer setting -- multi buffer switcher
 " ============================================================================
 let g:miniBufExplMapWindowNavVim=1
 let g:miniBufExplMapWindowNavArrows=1
@@ -263,69 +238,95 @@ let g:miniBufExplMapCTabSwitchBufs=1
 let g:miniBufExplModSelTarget=1
 
 " ============================================================================
-" Tag list & ctags
+" cscope setting
 " ============================================================================
-let Tlist_Show_One_File=1                    " 只显示当前文件的tags
-let Tlist_Exit_OnlyWindow=1                  " 如果Taglist窗口是最后一个窗口则退出Vim
-let Tlist_Use_Right_Window=1                 " 在右侧窗口中显示
-let Tlist_File_Fold_Auto_Close=1             " 自动折叠，或 Tlist_File_Auto_Close
-let Tlist_GainFocus_On_ToggleOpen = 1        " 打开 TList 窗口时将光标移过来
+" add any cscope database in current directory and environment variable
+if filereadable("cscope.out")
+    cs add cscope.out
+elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+endif
+" cscope shortcuts
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>    " Maybe no working
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" Generate cscope file under current folder
+nmap <c-x><c-p> :!cscope -Rbq <CR>
 
-"将当前的工程的tags导入
+" ============================================================================
+" Tag list & ctags setting
+" ============================================================================
+let Tlist_Show_One_File=1                    " Only show tags in current file
+let Tlist_Exit_OnlyWindow=1                  " Quit vim if Taglist is the last window
+let Tlist_Use_Right_Window=1                 " Show tags window on the right side
+let Tlist_File_Fold_Auto_Close=1             " Auto-fold，or Tlist_File_Auto_Close
+let Tlist_GainFocus_On_ToggleOpen = 1        " Move cursor to TList window when opening
+
+" Use tags file on current folder
 set tags=./tags
-"将系统已经生成的tags导入
+" Use public tags
 set tags+=~/.vim/systags
 
-" tl 打开 Taglist [非插入模式]
-map tl :Tlist<CR><c-l>
+" Use 'tl' open Taglist window
+nmap tl :Tlist<CR><c-l>
 
-" Taglist 快捷键
+" Use F11 open Taglist window
 "imap <silent> <F11> <esc>:TlistToggle<CR>
 "nmap <silent> <F11> :TlistToggle<CR>
 
-" ============================================================================
-" TagBar
-" ============================================================================
-map tb :TagbarToggle<CR><c-l>                " 使用 tb 打开 TagBar 窗口
-let g:tagbar_ctags_bin = 'ctags'             " 指定 tag 程序名称
-let g:tagbar_width = 30                      " TagBar 窗口宽度
-let g:tagbar_autofocus = 1                   " 打开 TagBar 后将光标移过来
+" Generate ctags file under current folder, recommanded by omnicppcomplete
+nmap <c-x><c-g> :!ctags -R --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " ============================================================================
-" 文档模板
+" TagBar setting
 " ============================================================================
-" :LoadTemplate 根据文件后缀自动加载模板
-let g:template_path='/home/freyr/.vim/template/'  " 需要根据实际情况修改！
+nmap tb :TagbarToggle<CR><c-l>               " Use 'tb' toggle TagBar window
+let g:tagbar_ctags_bin = 'ctags'             " Set tag program name
+let g:tagbar_width = 30                      " TagBar window width
+let g:tagbar_autofocus = 1                   " Move cursor to TagBar window when opening
 
-" :AuthorInfoDetect 自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合
+" ============================================================================
+" LoadTemplate & AuthorInfoDetect setting -- File templates
+" ============================================================================
+" :LoadTemplate setting
+let g:template_path='/home/freyr/.vim/template/'     " Please modify the templates file here
+
+" Ctrl-X Ctrl-T load file template according to file extension
+nmap <c-x><c-t> <ESC>:LoadTemplate<CR><ESC>Gi
+
+" :AuthorInfoDetect setting (offered by NERD_commenter & authorinfo)
 let g:vimrc_author='LinFan'
-let g:vimrc_email='fan.lin@tieto.com'
-let g:vimrc_homepage='http://www.tieto.com'
+let g:vimrc_email='linfan.china@gmail.com'
+let g:vimrc_homepage=''
 
-" Ctrl + E 一步加载语法模板和作者、时间信息
-map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-imap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+" Ctrl-X Ctrl-E auto add file header with author information
+nmap <c-x><c-e> <ESC>:AuthorInfoDetect<CR><ESC>Gi
 
 " ============================================================================
-" NERD_tree
+" NERD_tree setting
 " ============================================================================
 let NERDChristmasTree=1
 let NERDTreeAutoCenter=1
 let NERDTreeChDirMode=1
 let NERDTreeHighlightCursorline=1
 let NERDTreeShowLineNumbers=0
-let NERDTreeWinPos=0	"1 让在右边显示文件浏览器的窗口
+let NERDTreeWinPos=0	" 0 to show NERDtree window on left, 1 to show on right
 
-" nt 打开 NERDTree [非插入模式]
-map nt :NERDTree<CR>
+" Use 'nt' open NERD_tree
+nmap nt :NERDTree<CR>
 
-" NERD_tree 快捷键 
+" Use F10 open NERD_tree
 "imap <silent> <F10> <esc>:NERDTreeToggle<CR>
 "nmap <silent> <F10> :NERDTreeToggle<CR>
 
 " ============================================================================
-" buf explorer
+" buf explorer setting
 " ============================================================================
 "let g:bufExplorerFindActive=1
 "let g:bufExplorerReverseSort=0
@@ -339,65 +340,15 @@ map nt :NERDTree<CR>
 "let g:bufExplorerSplitRight=1
 "autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
-" BufExplorer 快捷键 
+" Use F12 open BufExplorer
 "imap <silent> <F12> <esc>:BufExplorer<CR>
 "nmap <silent> <F12> :BufExplorer<CR>
 
+" ===========================================================================
+" window, buffer and tab setting
 " ============================================================================
-" 其他快捷键
-" ============================================================================
 
-" Shift + 上/下方向键 将当前行与上/下行交换
-nmap <S-down> :<C-u>move .+1<CR>
-nmap <S-up> :<C-u>move .-2<CR>
-imap <S-down> <Esc>:<C-u>move .+1<CR>
-imap <S-up> <Esc>:<C-u>move .-2<CR>
-vmap <S-down> :move '>+1<CR>gv
-vmap <S-up> :move '<-2<CR>gv
-
-" 使用空格键跳到下一个空格位置 [非编辑模式]
-"nmap <space> f 
-
-" 普通模式下回车，将光标后面的内容移至下一行
-nmap <CR> i<CR><ESC>k$
-
-" Alt + o 建立新行并留在非编辑模式
-nmap <A-o> o<ESC>
-
-" Alt + i 从光标位置分行
-nmap <A-i> i<CR><ESC>k$
-imap <A-i> <CR><ESC>kA
-
-" Ctrl + a 全选所有内容
-"map <C-a> ggVG
-
-" 设置快速不保存退出快捷键
-"map <S-q><S-q> :q!<CR>:q!<CR>:q!<CR>
-
-" 在normal模式下先后按下 ,s 重新加载.vimrc配置文件
-nmap ,s :source ~/.vimrc<CR>
-
-" 将上下左右键映射为 Tab 或 Buffer 跳转
-"nmap <left> :tabprevious<cr>  "左一个Tab
-"nmap <right> :tabnext<cr>     "右一个Tab
-"nmap <up> :bn<cr>             "上一个Buf
-"nmap <down> :bp<cr>           "下一个Buf
-
-" 使用Alt+数字键切换Tab
-if has("gui_running")
-    noremap <M-1> 1gt
-    noremap <M-2> 2gt
-    noremap <M-3> 3gt
-    noremap <M-4> 4gt
-    noremap <M-5> 5gt
-    noremap <M-6> 6gt
-    noremap <M-7> 7gt
-    noremap <M-8> 8gt
-    noremap <M-9> 9gt
-    noremap <M-0> 10gt
-endif
-
-" 窗口区域切换，Ctrl + 上/下/左/右 来切换
+" Use Ctrl + Up/Down/Left/Right to switch window
 imap <silent> <C-left> <esc><C-W><left>
 vmap <silent> <C-left> <esc><C-W><left>
 nmap <silent> <C-left> <C-W><left>
@@ -411,38 +362,92 @@ imap <silent> <C-down> <esc><C-W><down>
 vmap <silent> <C-down> <esc><C-W><down>
 nmap <silent> <C-down> <C-W><down>
 
-" F2 切换显示/隐藏搜索高亮
+" Use Shift + Left/Right to swith tab
+"nmap <S-left> :tabprevious<cr>  " Previous Tab
+"nmap <S-right> :tabnext<cr>     " Next Tab
+" Use Shift + Left/Right to swith buffer
+nmap <S-left> :bp<cr>            " Previous Buf
+nmap <S-right> :bn<cr>           " Next Buf
+
+" Open file in new tab
+nmap <c-x><c-n> :tabnew ./
+
+" Use Alt + number to switch tab
+if has("gui_running")
+    noremap <M-1> 1gt
+    noremap <M-2> 2gt
+    noremap <M-3> 3gt
+    noremap <M-4> 4gt
+    noremap <M-5> 5gt
+    noremap <M-6> 6gt
+    noremap <M-7> 7gt
+    noremap <M-8> 8gt
+    noremap <M-9> 9gt
+    noremap <M-0> 10gt
+endif
+noremap <c-x>1 1gt
+noremap <c-x>2 2gt
+noremap <c-x>3 3gt
+noremap <c-x>4 4gt
+noremap <c-x>5 5gt
+noremap <c-x>6 6gt
+noremap <c-x>7 7gt
+noremap <c-x>8 8gt
+noremap <c-x>9 9gt
+noremap <c-x>0 10gt
+
+" ============================================================================
+" Other shortcuts
+" ============================================================================
+
+" Swith text mode and hex mode
+nmap <c-x><c-h> :%!xxd -g 1<CR>
+nmap <c-x><c-d> :%!xxd -r<CR>
+
+" Shift + Up/Down to switch two lines
+nmap <S-down> :<C-u>move .+1<CR>
+nmap <S-up> :<C-u>move .-2<CR>
+imap <S-down> <Esc>:<C-u>move .+1<CR>
+imap <S-up> <Esc>:<C-u>move .-2<CR>
+vmap <S-down> :move '>+1<CR>gv
+vmap <S-up> :move '<-2<CR>gv
+
+" Enable 'Enter' key on normal-mode
+nmap <CR> i<CR><ESC>k$
+
+" Use Alt + o Create new line and stay in normal-mode
+nmap <A-o> o<ESC>
+
+" Reload .vimrc configure without restart vim
+nmap <c-x><c-v> :source ~/.vimrc<CR>
+
+" F2 Switch search highlight
 imap <silent> <F2> <esc>:set hlsearch!<CR>
 nmap <silent> <F2> :set hlsearch!<CR>
 
-" F3 切换自动换行
+" F3 Swith line wrap
 nmap <F3> :set wrap!<CR>
 imap <F3> <Esc>:set wrap!<CR>
 
-" F4 切换行号显示
-nmap <F4> :set nu!<CR>
-imap <F4> <Esc>:set nu!<CR>
+" F4 Swith auto-indent when pasting
+set pastetoggle=<F4>
 
-" F5 切换粘贴模式切，切换打开/关闭自动缩进功，可以避免自动缩进的带来的格式影响
-set pastetoggle=<F5>
+" F5 Swith show line number
+"nmap <F5> :set nu!<CR>
+"imap <F5> <Esc>:set nu!<CR>
 
-" F11 切换全屏
+" F11 Switch full screen
 map <F11> <Esc>:simalt ~x<CR>
-" F12 还原窗口
-"map <F12> <Esc>:set columns=80 lines=21<cr>
 
-" 切换拼写检查，For VIM7 only
+" Check spell，For VIM7 only
 "nmap <C-F11> :setlocal spell!<CR>
 "imap <C-F11> <Esc>:setlocal spell!<CR>
 
-" omnicppcomplete 推荐的快捷键
-map <C-F12> :!ctags -R --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
 " ============================================================================
-" 编译 && 运行
+" Compile & Run
 " ============================================================================
 
-" 编译源文件
+" Compile source code
 func! CompileCode()
         exec "w"
         if &filetype == "c"
@@ -464,12 +469,12 @@ func! CompileCode()
         endif
 endfunc
 
-" 运行可执行文件
+" Run compiled code
 func! RunCode()
         exec "w"
         if &filetype == "c" || &filetype == "cpp" || &filetype == "haskell"
-            exec "! %<.exe"
-            "For Linux: exec "! ./%<" 
+            " For Windows: exec "! %<.exe"
+            exec "! ./%<" 
         elseif &filetype == "java"
             exec "!java %<"
         elseif &filetype == "lua"
@@ -483,13 +488,13 @@ func! RunCode()
         endif
 endfunc
 
-" Ctrl + C 一键保存、编译
-"map <c-c> :call CompileCode()<CR>
-"imap <c-c> <ESC>:call CompileCode()<CR>
-"vmap <c-c> <ESC>:call CompileCode()<CR>
+" Ctrl+X Ctrl+C Compile current file
+nmap <c-x><c-b> :call CompileCode()<CR>
+imap <c-x><c-b> <ESC>:call CompileCode()<CR>
+vmap <c-x><c-b> <ESC>:call CompileCode()<CR>
 
-" Ctrl + R 一键保存、运行
-"map <c-r> :call RunCode()<CR>
-"imap <c-r> <ESC>:call RunCode()<CR>
-"vmap <c-r> <ESC>:call RunCode()<CR>
+" Ctrl+X Ctrl+R Run compiled file
+nmap <c-x><c-r> :call RunCode()<CR>
+imap <c-x><c-r> <ESC>:call RunCode()<CR>
+vmap <c-x><c-r> <ESC>:call RunCode()<CR>
 
