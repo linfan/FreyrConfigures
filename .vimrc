@@ -309,6 +309,9 @@ let g:bufExplorerSplitOutPathName=1
 let g:bufExplorerSplitRight=1
 autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
+" Use 'bf' open BufExplorer
+nmap bf :BufExplorer<CR>
+
 " Use F8 open BufExplorer
 imap <silent> <F8> <esc>:BufExplorer<CR>
 nmap <silent> <F8> :BufExplorer<CR>
