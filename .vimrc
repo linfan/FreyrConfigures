@@ -1,84 +1,10 @@
-" ============================================================================
-"  Author: LinFan
-"  Email: linfan.china@gmail.com
-"  Date: 2013-04-18
-" ============================================================================
-
-" <C-P>                      --单词补全
-" <C-X><C-L>                 --整行补全
-" Tab键                      --插入模式下的全功能语法结构补全 [snipMate插件]
-" Shift + Insert             --向Vim中粘贴从别处复制的内容
-
-" u [小写]                   --单步复原 [非插入模式]
-" U [大写]                   --整行复原 [非插入模式]
-
-" nt                         --打开NERDTree [非插入模式]
-" tl                         --打开TagList [非插入模式]
-" tb                         --打开TagBar [非插入模式]
-
-" za                         --打开或关闭当前折叠
-" zM                         --关闭所有折叠
-" zR                         --打开所有折叠
-
-" ---------- 主要插件详细用法说明 ---------------------
-
-" :Tlist                     --呼出变量和函数列表 [TagList插件]
-" :LoadTemplate              --呼出语法模板 [Load_Template插件]
-" :AuthorInfoDetect          --添加作者、时间等信息 [NERD_commenter && authorinfo插件]
-
-" ---------- Taglist [代码结构分析] -------------------
-"
-" 默认在Vim的运行目录下找 "tags" 文件
-" :set tags=文件路径         --命令设定标签文件的路径
-" :ta 标签                   --跳转到指定名称标签
-" Ctrl + ]                   --跳转到光标下标签的定义处
-" Ctrl + t                   --回到跳转前的位置
-
-" ---------- a.vim [自动切换C/C++同名头文件] ----------
-"
-" :A                         --切换同名头文件并独占整个屏幕
-" :AS                        --切换同名头文件并垂直分屏，头文件在上
-" :AV                        --切换同名头文件并水平分割，头文件在左
-
-" ---------- mark.vim [追踪高亮指定关键字] ------------
-"
-" \m                         --normal模式下，在想要高亮的单词上面敲击\m即可高亮或取消高亮该单词
-" \r                         --使用正则表达式添加标记
-" \n                         --移除当前光标位置颜色标记
-" \/ 和 \?                   --跳转到下一个/上一个任意标记
-" \* 和 \#                   --跳转到下一个/上一个当前光标下的颜色标记，并将起设为<Last mark>
-" * 和 #                     --跳转到下一个/上一个<Last mark>
-" :Mark                      --取消所有高亮
-" :Mark abc                  --指定高亮单词 abc 或取消高亮 abc
-
-" ---------- BufferExplorer [buffer管理工具] ---------
-"
-" \be                        -- (normal open)  
-" \bs                        -- (force horizontal split open) 
-" \bv                        -- (force vertical split open) 
-" Enter                      --在Buffer窗口，打开光标下的标签
-" d                          --在Buffer窗口，关闭光标下的标签
-" q                          --在Buffer窗口，关闭Buffer窗口
-
-" ---------- BERDCommenter [C/C++注释工具] ------------
-"
-" \ci                        --逐行注释/取消注释代码段
-" \c<Space>                  --注释/取消注释代码段
-" \ca                        --在 // 和 /* */ 方式切换
-
-" ---------- NERDTree [智能文件浏览器] ----------------
-"
-" :NERDTree                  --启动NERDTree插件
-" o [小写]                   --切换当前文件或目录的打开、关闭状态
-" u                          --打开上层目录
-" p [小写]                   --返回上层目录
-" P [大写]                   --返回根目录
-" K                          --转到当前目录第一个节点
-" J                          --转到当前目录最后的节点
-" m                          --显示文件系统菜单 [增、删、移]
-" ?                          --弹出帮助菜单
-" q                          --退出该插件
-
+"=============================================================================
+"     FileName: .vimrc
+"         Desc: vim configure file
+"       Author: LinFan
+"        Email: linfan.china@gmail.com
+"   LastChange: 2013-04-20 15:07:39
+"=============================================================================
 
 " Use Django Template format render .html file
 " This line must be put at the first line
@@ -296,9 +222,9 @@ let Tlist_GainFocus_On_ToggleOpen = 1        " Move cursor to TList window when 
 " Use 'tl' open Taglist window
 nmap tl :Tlist<CR><c-l>
 
-" Use F11 open Taglist window
-imap <silent> <F11> <esc>:TlistToggle<CR>
-nmap <silent> <F11> :TlistToggle<CR>
+" Use F7 open Taglist window
+imap <silent> <F7> <esc>:TlistToggle<CR>
+nmap <silent> <F7> :TlistToggle<CR>
 
 " ============================================================================
 " TagBar setting
@@ -308,9 +234,9 @@ let g:tagbar_ctags_bin = 'ctags'             " Set tag program name
 let g:tagbar_width = 30                      " TagBar window width
 let g:tagbar_autofocus = 1                   " Move cursor to TagBar window when opening
 
-" Use F11 open Tagbar window
-"imap <silent> <F11> <esc>:TagbarToggle<CR>
-"nmap <silent> <F11> :TagbarToggle<CR>
+" Use F7 open Tagbar window
+"imap <silent> <F7> <esc>:TagbarToggle<CR>
+"nmap <silent> <F7> :TagbarToggle<CR>
 
 " ============================================================================
 " SrcExpl setting
@@ -347,9 +273,9 @@ let g:SrcExpl_nextDefKey = "<C-k>"
 " Use 'se' open Source Explorer
 nmap sc :SrcExplToggle<CR>
 
-" Use F12 open SrcExpl window
-imap <silent> <F12> <esc>:SrcExplToggle<CR>
-nmap <silent> <F12> :SrcExplToggle<CR>
+" Use F9 open SrcExpl window
+imap <silent> <F9> <esc>:SrcExplToggle<CR>
+nmap <silent> <F9> :SrcExplToggle<CR>
 
 " ============================================================================
 " NERD_tree setting
@@ -364,9 +290,9 @@ let NERDTreeWinPos=0	" 0 to show NERDtree window on left, 1 to show on right
 " Use 'nt' open NERD_tree
 nmap nt :NERDTreeToggle<CR>
 
-" Use F10 open NERD_tree
-imap <silent> <F10> <esc>:NERDTreeToggle<CR>
-nmap <silent> <F10> :NERDTreeToggle<CR>
+" Use F6 open NERD_tree
+imap <silent> <F6> <esc>:NERDTreeToggle<CR>
+nmap <silent> <F6> :NERDTreeToggle<CR>
 
 " ============================================================================
 " buf explorer setting
@@ -383,9 +309,9 @@ let g:bufExplorerSplitOutPathName=1
 let g:bufExplorerSplitRight=1
 autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
-" Use F9 open BufExplorer
-imap <silent> <F9> <esc>:BufExplorer<CR>
-nmap <silent> <F9> :BufExplorer<CR>
+" Use F8 open BufExplorer
+imap <silent> <F8> <esc>:BufExplorer<CR>
+nmap <silent> <F8> :BufExplorer<CR>
 
 " ============================================================================
 " LoadTemplate & AuthorInfoDetect setting -- File templates
@@ -497,12 +423,15 @@ set pastetoggle=<F4>
 "nmap <F5> :set nu!<CR>
 "imap <F5> <Esc>:set nu!<CR>
 
-" F11 Switch full screen
+" F10 Cannot be overload, gnome console use it open 'File' menu
+
+" F11 Switch full screen 
+" Don't change this setting, gnome console also use F11 as full screen trigger
 map <F11> <Esc>:simalt ~x<CR>
 
-" Check spell，For VIM7 only
-"nmap <C-F11> :setlocal spell!<CR>
-"imap <C-F11> <Esc>:setlocal spell!<CR>
+" Check spell，for vim7 only
+nmap <F12> :setlocal spell!<CR>
+imap <F12> <Esc>:setlocal spell!<CR>
 
 " ============================================================================
 " Compile & Run
