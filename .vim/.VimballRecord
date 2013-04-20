@@ -1,2 +1,2 @@
-supertab.vba: call delete('/home/freyr/.vim/doc/supertab.txt')|call delete('/home/freyr/.vim/plugin/supertab.vim')
-tagbar.vmb: call delete('/home/freyr/.vim/autoload/tagbar.vim')|call delete('/home/freyr/.vim/doc/tagbar.txt')|call delete('/home/freyr/.vim/plugin/tagbar.vim')|call delete('/home/freyr/.vim/syntax/tagbar.vim')
+supertab.vmb: call delete('/home/freyr/.vim/doc/supertab.txt')|call delete('/home/freyr/.vim/plugin/supertab.vim')
+tagbar.vmb: call delete('/home/freyr/.vim/README.md')|call delete('/home/freyr/.vim/autoload/tagbar.vim')|call delete('/home/freyr/.vim/doc/tagbar.txt')|call delete('/home/freyr/.vim/plugin/tagbar.vim')|call delete('/home/freyr/.vim/syntax/tagbar.vim')

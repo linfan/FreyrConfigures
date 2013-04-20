@@ -32,14 +32,9 @@ endfunction
 function s:DetectFirstLine()
     "跳转到指定区域的第一行，开始操作
     exe 'normal '.1.'G'
-	" 以下用于声明需要在载入模板是跳过的语句，已增加/修改Lua和Ruby的声明
-	" Ruchee 2012-04-13
     let arrData = [
                 \['sh',['^#!.*$']],
-                \['lua',['^#!.*$']],
-                \['perl',['^#!.*$']],
                 \['python',['^#!.*$','^#.*coding:.*$']],
-                \['ruby',['^#!.*$','^#.*encoding:.*$']],
                 \['php',['^<?.*']]
                 \]
     let oldNum = line('.')
@@ -69,29 +64,26 @@ function s:DetectFirstLine()
     endwhile
     normal O
 endfunction
-
-" 以下两函数是用来在Python文件最前面用文档字符串包围作者信息，已注销，不需要
-" Ruchee 2012-04-13
 function s:BeforeTitle()
-    "let arrData = [['python',""]]
-    "for [t,v] in arrData
-    "    if g:CheckFileType(t)
-    "        call setline('.',v)
-    "        normal o
-    "        break
-    "    endif
-    "endfor
+    let arrData = [['python',"'''"]]
+    for [t,v] in arrData
+        if g:CheckFileType(t)
+            call setline('.',v)
+            normal o
+            break
+        endif
+    endfor
 endfunction
 function s:AfterTitle()
-    "let arrData = [['python',""]]
-    "for [t,v] in arrData
-    "    if g:CheckFileType(t)
-    "        normal o
-    "        call setline('.',v)
-    "        normal k
-    "        break
-    "    endif
-    "endfor
+    let arrData = [['python',"'''"]]
+    for [t,v] in arrData
+        if g:CheckFileType(t)
+            normal o
+            call setline('.',v)
+            normal k
+            break
+        endif
+    endfor
 endfunction
 function s:AddTitle()
     "检查开始插入作者信息的行
@@ -121,21 +113,27 @@ function s:AddTitle()
     call s:BeforeTitle()
 
     let firstLine = line('.')
-    call setline('.',noTypeChar.'========================================================================')
+    call setline('.',noTypeChar.'=============================================================================')
     normal o
-    call setline('.',noTypeChar.preChar.'   FileName: '.expand("%:t"))
+    call setline('.',noTypeChar.preChar.'     FileName: '.expand("%:t"))
     normal o
-    call setline('.',noTypeChar.preChar.'     Author: '.g:vimrc_author)
+    call setline('.',noTypeChar.preChar.'         Desc: ')
+    let gotoLn = line('.')
     normal o
-    call setline('.',noTypeChar.preChar.'      Email: '.g:vimrc_email)
+    call setline('.',noTypeChar.preChar.'       Author: '.g:vimrc_author)
     normal o
-    call setline('.',noTypeChar.preChar.'   HomePage: '.g:vimrc_homepage)
+    call setline('.',noTypeChar.preChar.'        Email: '.g:vimrc_email)
     normal o
-    call setline('.',noTypeChar.preChar.' LastChange: '.strftime("%Y-%m-%d %H:%M:%S"))
+    call setline('.',noTypeChar.preChar.'     HomePage: '.g:vimrc_homepage)
     normal o
-    call setline('.',noTypeChar.'========================================================================')
+    call setline('.',noTypeChar.preChar.'      Version: 0.0.1')
+    normal o
+    call setline('.',noTypeChar.preChar.'   LastChange: '.strftime("%Y-%m-%d %H:%M:%S"))
+    normal o
+    call setline('.',noTypeChar.preChar.'      History:')
+    normal o
+    call setline('.',noTypeChar.'=============================================================================')
     let lastLine = line('.')
-    let gotoLn = line('.')  " 指示光标最后停留的位置
 
     "在最后一行之后做的事情
     call s:AfterTitle()

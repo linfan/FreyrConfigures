@@ -246,6 +246,10 @@ if filereadable("cscope.out")
 elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
 endif
+
+" Add a ctags datebase
+nmap <c-x>p :cs add ./
+
 " cscope shortcuts
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -260,7 +264,25 @@ nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <c-x><c-p> :!cscope -Rbq <CR>
 
 " ============================================================================
-" Tag list & ctags setting
+" ctags setting
+" ============================================================================
+" Use tags file on current folder and environment variable
+if filereadable("tags")
+    set tags=tags
+elseif $CTAGS_DB != ""
+    set tags=$CTAGS_DB
+endif
+" Use public tags
+"set tags+=~/.vim/systags
+
+" Add a ctags datebase
+nmap <c-x>g :set tags+=./
+
+" Generate ctags file under current folder, recommanded by omnicppcomplete
+nmap <c-x><c-g> :!ctags -R --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+" ============================================================================
+" Tag list setting
 " ============================================================================
 let Tlist_Show_One_File=1                    " Only show tags in current file
 let Tlist_Exit_OnlyWindow=1                  " Quit vim if Taglist is the last window
@@ -268,20 +290,12 @@ let Tlist_Use_Right_Window=1                 " Show tags window on the right sid
 let Tlist_File_Fold_Auto_Close=1             " Auto-fold，or Tlist_File_Auto_Close
 let Tlist_GainFocus_On_ToggleOpen = 1        " Move cursor to TList window when opening
 
-" Use tags file on current folder
-set tags=./tags
-" Use public tags
-set tags+=~/.vim/systags
-
 " Use 'tl' open Taglist window
 nmap tl :Tlist<CR><c-l>
 
 " Use F11 open Taglist window
-"imap <silent> <F11> <esc>:TlistToggle<CR>
-"nmap <silent> <F11> :TlistToggle<CR>
-
-" Generate ctags file under current folder, recommanded by omnicppcomplete
-nmap <c-x><c-g> :!ctags -R --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+imap <silent> <F11> <esc>:TlistToggle<CR>
+nmap <silent> <F11> :TlistToggle<CR>
 
 " ============================================================================
 " TagBar setting
@@ -290,6 +304,85 @@ nmap tb :TagbarToggle<CR><c-l>               " Use 'tb' toggle TagBar window
 let g:tagbar_ctags_bin = 'ctags'             " Set tag program name
 let g:tagbar_width = 30                      " TagBar window width
 let g:tagbar_autofocus = 1                   " Move cursor to TagBar window when opening
+
+" Use F11 open Tagbar window
+"imap <silent> <F11> <esc>:TagbarToggle<CR>
+"nmap <silent> <F11> :TagbarToggle<CR>
+
+" ============================================================================
+" SrcExpl setting
+" ============================================================================
+" Set the height of Source Explorer window 
+let g:SrcExpl_winHeight = 8 
+" Set 100 ms for refreshing the Source Explorer 
+let g:SrcExpl_refreshTime = 100 
+" Set "" key to jump into the exact definition context 
+let g:SrcExpl_jumpKey = "<]>" 
+" Set "" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<[>" 
+" In order to Avoid conflicts, the Source Explorer should know what plugins are using buffers.
+" And you need add their bufname into the list below according to the command ":buffers!" 
+let g:SrcExpl_pluginList = [ 
+        \ "__Tag_List__", 
+        \ "_NERD_tree_", 
+        \ "Source_Explorer" 
+    \ ] 
+" Enable/Disable the local definition searching, and note that this is not guaranteed to work
+let g:SrcExpl_searchLocalDef = 1 
+" Do not let the Source Explorer update the tags file when opening 
+let g:SrcExpl_isUpdateTags = 0 
+" Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to create/update the tags file 
+"let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+let g:SrcExpl_updateTagsCmd = "ctags -L cscope.files" 
+" Set "" key for updating the tags file artificially 
+let g:SrcExpl_updateTagsKey = "<!>" 
+" Set "<>" key for displaying the previous definition in the jump list 
+let g:SrcExpl_prevDefKey = "<{>" 
+" Set "<>" key for displaying the next definition in the jump list 
+let g:SrcExpl_nextDefKey = "<}>" 
+
+" Use 'se' open Source Explorer
+nmap sc :SrcExplToggle<CR>
+
+" Use F12 open SrcExpl window
+imap <silent> <F12> <esc>:SrcExplToggle<CR>
+nmap <silent> <F12> :SrcExplToggle<CR>
+
+" ============================================================================
+" NERD_tree setting
+" ============================================================================
+let NERDChristmasTree=1
+let NERDTreeAutoCenter=1
+let NERDTreeChDirMode=1
+let NERDTreeHighlightCursorline=1
+let NERDTreeShowLineNumbers=0
+let NERDTreeWinPos=0	" 0 to show NERDtree window on left, 1 to show on right
+
+" Use 'nt' open NERD_tree
+nmap nt :NERDTreeToggle<CR>
+
+" Use F10 open NERD_tree
+imap <silent> <F10> <esc>:NERDTreeToggle<CR>
+nmap <silent> <F10> :NERDTreeToggle<CR>
+
+" ============================================================================
+" buf explorer setting
+" ============================================================================
+let g:bufExplorerFindActive=1
+let g:bufExplorerReverseSort=0
+let g:bufExplorerShowDirectories=1
+let g:bufExplorerShowRelativePath=0
+let g:bufExplorerShowTabBuffer=0
+let g:bufExplorerShowUnlisted=0
+let g:bufExplorerSortBy='mru'
+let g:bufExplorerSplitBelow=1
+let g:bufExplorerSplitOutPathName=1
+let g:bufExplorerSplitRight=1
+autocmd BufWinEnter \[Buf\ List\] setl nonumber
+
+" Use F9 open BufExplorer
+imap <silent> <F9> <esc>:BufExplorer<CR>
+nmap <silent> <F9> :BufExplorer<CR>
 
 " ============================================================================
 " LoadTemplate & AuthorInfoDetect setting -- File templates
@@ -307,42 +400,6 @@ let g:vimrc_homepage=''
 
 " Ctrl-X Ctrl-E auto add file header with author information
 nmap <c-x><c-e> <ESC>:AuthorInfoDetect<CR><ESC>Gi
-
-" ============================================================================
-" NERD_tree setting
-" ============================================================================
-let NERDChristmasTree=1
-let NERDTreeAutoCenter=1
-let NERDTreeChDirMode=1
-let NERDTreeHighlightCursorline=1
-let NERDTreeShowLineNumbers=0
-let NERDTreeWinPos=0	" 0 to show NERDtree window on left, 1 to show on right
-
-" Use 'nt' open NERD_tree
-nmap nt :NERDTree<CR>
-
-" Use F10 open NERD_tree
-"imap <silent> <F10> <esc>:NERDTreeToggle<CR>
-"nmap <silent> <F10> :NERDTreeToggle<CR>
-
-" ============================================================================
-" buf explorer setting
-" ============================================================================
-"let g:bufExplorerFindActive=1
-"let g:bufExplorerReverseSort=0
-"let g:bufExplorerShowDirectories=1
-"let g:bufExplorerShowRelativePath=0
-"let g:bufExplorerShowTabBuffer=0
-"let g:bufExplorerShowUnlisted=0
-"let g:bufExplorerSortBy='mru'
-"let g:bufExplorerSplitBelow=1
-"let g:bufExplorerSplitOutPathName=1
-"let g:bufExplorerSplitRight=1
-"autocmd BufWinEnter \[Buf\ List\] setl nonumber
-
-" Use F12 open BufExplorer
-"imap <silent> <F12> <esc>:BufExplorer<CR>
-"nmap <silent> <F12> :BufExplorer<CR>
 
 " ===========================================================================
 " window, buffer and tab setting
@@ -369,8 +426,9 @@ nmap <silent> <C-down> <C-W><down>
 nmap <S-left> :bp<cr>            " Previous Buf
 nmap <S-right> :bn<cr>           " Next Buf
 
-" Open file in new tab
-nmap <c-x><c-n> :tabnew ./
+" Creat new tab or Open file in new tab
+nmap <c-x><c-n> :tabnew<CR>
+nmap <c-x><c-o> :tabnew ./
 
 " Use Alt + number to switch tab
 if has("gui_running")
