@@ -94,7 +94,10 @@ colorscheme blackboard       " Blackboard
 "colorscheme elflord         " Fairy
 
 "set background=dark         " Use black ground
-set guifont=Monaco:h10       " Font & size
+if has("gui_running")
+    "set guifont=Monaco:h10      " Font & size
+    set guifont=Monaco           " Font (font size setting not compatible well with vim-gtk)
+endif
 
 " Encode setting
 "set enc=chinese             " Use Chinese encode
@@ -316,10 +319,10 @@ let g:tagbar_autofocus = 1                   " Move cursor to TagBar window when
 let g:SrcExpl_winHeight = 8 
 " Set 100 ms for refreshing the Source Explorer 
 let g:SrcExpl_refreshTime = 100 
-" Set "" key to jump into the exact definition context 
-let g:SrcExpl_jumpKey = "<]>" 
-" Set "" key for back from the definition context 
-let g:SrcExpl_gobackKey = "<[>" 
+" Set "NONE" key to jump into the exact definition context 
+let g:SrcExpl_jumpKey = "" 
+" Set "NONE" key for back from the definition context 
+let g:SrcExpl_gobackKey = "" 
 " In order to Avoid conflicts, the Source Explorer should know what plugins are using buffers.
 " And you need add their bufname into the list below according to the command ":buffers!" 
 let g:SrcExpl_pluginList = [ 
@@ -334,12 +337,12 @@ let g:SrcExpl_isUpdateTags = 0
 " Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to create/update the tags file 
 "let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
 let g:SrcExpl_updateTagsCmd = "ctags -L cscope.files" 
-" Set "" key for updating the tags file artificially 
-let g:SrcExpl_updateTagsKey = "<!>" 
-" Set "<>" key for displaying the previous definition in the jump list 
-let g:SrcExpl_prevDefKey = "<{>" 
-" Set "<>" key for displaying the next definition in the jump list 
-let g:SrcExpl_nextDefKey = "<}>" 
+" Set "NONE" key for updating the tags file artificially 
+let g:SrcExpl_updateTagsKey = "" 
+" Set "<A-k>" key for displaying the previous definition in the jump list 
+let g:SrcExpl_prevDefKey = "<A-k>" 
+" Set "<C-k>" key for displaying the next definition in the jump list 
+let g:SrcExpl_nextDefKey = "<C-k>" 
 
 " Use 'se' open Source Explorer
 nmap sc :SrcExplToggle<CR>

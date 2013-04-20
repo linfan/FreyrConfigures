@@ -1,6 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/freyr/Downloads/sip-4.14.4/doc'
 let g:netrw_dirhist_2='/home/freyr/workspace/giveaword'
 let g:netrw_dirhist_3='/home/freyr/Downloads/linux-2.6.10/drivers/usb/storage'
 let g:netrw_dirhist_4='/home/freyr/workspace/linux-2.6.10'
+let g:netrw_dirhist_5='/home/freyr/.fonts'
