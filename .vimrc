@@ -271,7 +271,7 @@ let g:SrcExpl_prevDefKey = "<A-k>"
 let g:SrcExpl_nextDefKey = "<C-k>" 
 
 " Use 'se' open Source Explorer
-nmap sc :SrcExplToggle<CR>
+nmap se :SrcExplToggle<CR>
 
 " Use F9 open SrcExpl window
 imap <silent> <F9> <esc>:SrcExplToggle<CR>
@@ -323,7 +323,7 @@ nmap <silent> <F8> :BufExplorer<CR>
 let g:template_path='/home/freyr/.vim/template/'     " Please modify the templates file here
 
 " Ctrl-X Ctrl-T load file template according to file extension
-nmap <c-x><c-t> <ESC>:LoadTemplate<CR><ESC>Gi
+nmap <c-x><c-t> <ESC>:LoadTemplate<CR><ESC>
 
 " :AuthorInfoDetect setting (offered by NERD_commenter & authorinfo)
 let g:vimrc_author='LinFan'
@@ -331,7 +331,7 @@ let g:vimrc_email='linfan.china@gmail.com'
 let g:vimrc_homepage=''
 
 " Ctrl-X Ctrl-E auto add file header with author information
-nmap <c-x><c-e> <ESC>:AuthorInfoDetect<CR><ESC>Gi
+nmap <c-x><c-e> <ESC>:AuthorInfoDetect<CR><ESC>
 
 " ===========================================================================
 " window, buffer and tab setting
