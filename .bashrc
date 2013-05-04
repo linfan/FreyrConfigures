@@ -32,49 +32,30 @@ function useQt5()
     export PATH=${QT_5_PATH}:${PATH}
 }
 
-# Take binary input and run it through bc for decimal output
+# Conversion of number system
 function bin-to-dec()
 {
-    option='ibase=2;obase=10;'
-    convert=${option}$*
-    echo $convert | bc
+    ((decNum=2#${1})); echo ${decNum} 
 }
-# Take binary input and run it through bc for hex output
 function bin-to-hex()
 {
-    option='ibase=2;obase=16;'
-    convert=${option}$*
-    echo $convert | bc
+    dec-to-hex `bin-to-dec ${1}` 
 }
-# Take decimal input and run it through bc for binary output
 function dec-to-bin()
-{
-    option='ibase=10;obase=2;'
-    convert=${option}$*
-    echo $convert | bc
+{ 
+    echo "obase=2;${1}" | bc 
 }
-# Take decimal input and run it through bc for hex output
 function dec-to-hex()
 {
-    option='obase=16;'
-    convert=${option}$*
-    echo $convert | bc
+    echo "obase=16;${1}" | bc
 }
-# Take hex input and run it through bc for binary output
 function hex-to-bin()
 {
-    INPUT_NUM=`echo $* | sed 's/[a-z]/\U&/g'`
-    option='ibase=16;obase=2;'
-    convert=${option}$INPUT_NUM
-    echo $convert | bc
+    dec-to-bin `hex-to-dec ${1}`
 }
-# Take hex input and run it through bc for decimal output
 function hex-to-dec()
 {
-    INPUT_NUM=`echo $* | sed 's/[a-z]/\U&/g'`
-    option='ibase=16;'
-    convert=${option}$INPUT_NUM
-    echo $convert | bc
+    ((decNum=16#${1})); echo ${decNum}
 }
 
 export TINY6410_TOOLCHAIN_PATH=/opt/FriendlyARM/toolschain/4.5.1/bin
