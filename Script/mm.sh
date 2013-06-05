@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Create main.cc file, use vim open it, then try build and run it
 
 function usage

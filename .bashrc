@@ -6,18 +6,18 @@ alias vi='vim'
 alias em='emacs -nw'
 alias ls='ls --color=auto'
 alias ll='ls -l'
-alias mx='ps -ef | grep -v grep | grep'
+alias pp='ps -ef | head -1; ps -ef | grep -v grep | grep'
 alias g='py3 /home/freyr/workspace/giveaword/giveaword.py'
 alias c='clear'
 alias grep='grep --color=auto'
 alias ngrep='grep -n -H'
 alias fgrep='~/Script/fgrep.sh'
 alias pgrep="ps -ef | head -1; ps -ef | grep -v grep | grep --color=auto -i"
-alias mm='source ~/Script/create-and-compile-main-cc.sh'
+alias ftree='~/Script/ftree.sh'
+alias mm='~/Script/mm.sh'
 alias w3m='w3m -M'
 alias minicom='minicom -c on'
 alias dnw2='sudo /home/freyr/App/dnw2/dnw2'
-alias list-file='~/Script/list-file.sh'
 
 QT_4_PATH=/home/freyr/.Qt4/bin
 QT_5_PATH=/home/freyr/.Qt5/5.0.1/gcc_64/bin
