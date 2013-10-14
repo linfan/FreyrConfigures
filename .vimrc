@@ -186,8 +186,7 @@ nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-"nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>    " Maybe no working
-nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " Generate cscope file under current folder
 nmap <c-x><c-p> :!cscope -Rbq <CR>
@@ -220,7 +219,7 @@ let Tlist_File_Fold_Auto_Close=1             " Auto-fold，or Tlist_File_Auto_Cl
 let Tlist_GainFocus_On_ToggleOpen = 1        " Move cursor to TList window when opening
 
 " Use 'tl' open Taglist window
-nmap tl :Tlist<CR><c-l>
+nmap tl :Tlist<CR>
 
 " Use F7 open Taglist window
 imap <silent> <F7> <esc>:TlistToggle<CR>
@@ -229,7 +228,8 @@ nmap <silent> <F7> :TlistToggle<CR>
 " ============================================================================
 " TagBar setting
 " ============================================================================
-nmap tb :TagbarToggle<CR><c-l>               " Use 'tb' toggle TagBar window
+" Use 'tb' toggle TagBar window
+nmap tb :TagbarToggle<CR>
 let g:tagbar_ctags_bin = 'ctags'             " Set tag program name
 let g:tagbar_width = 30                      " TagBar window width
 let g:tagbar_autofocus = 1                   " Move cursor to TagBar window when opening
@@ -352,11 +352,15 @@ vmap <silent> <C-down> <esc><C-W><down>
 nmap <silent> <C-down> <C-W><down>
 
 " Use Shift + Left/Right to swith tab
-"nmap <S-left> :tabprevious<cr>  " Previous Tab
-"nmap <S-right> :tabnext<cr>     " Next Tab
+" Previous Tab
+"nmap <S-left> :tabprevious<CR>
+" Next Tab
+"nmap <S-right> :tabnext<CR>
 " Use Shift + Left/Right to swith buffer
-nmap <S-left> :bp<cr>            " Previous Buf
-nmap <S-right> :bn<cr>           " Next Buf
+" Previous Buf
+nmap <S-left> :bp<CR>
+" Next Buf
+nmap <S-right> :bn<CR>
 
 " Creat new tab or Open file in new tab
 nmap <c-x><c-n> :tabnew<CR>
