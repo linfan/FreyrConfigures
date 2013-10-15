@@ -176,7 +176,7 @@ elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
 endif
 
-" Add a ctags datebase
+" Add a cscope datebase
 nmap <c-x>p :cs add ./
 
 " cscope shortcuts
@@ -195,6 +195,14 @@ nmap <c-x><c-p> :!cscope -Rbq <CR>
 " ctags setting
 " ============================================================================
 " Use tags file on current folder and environment variable
+" ctags operations:
+" :tag <NAME>        => jump to first definition of tag <NAME>
+" :tn[ext]           => jump to next definition
+" :tp[revious]       => jump to previous definition
+" :tf[irst]          => jump to first definition
+" :tl[ast]           => jump to last definition
+" :ts[elect] <NAME>  => list all definition of tag <NAME>
+
 if filereadable("tags")
     set tags=tags
 elseif $CTAGS_DB != ""
@@ -334,7 +342,7 @@ let g:vimrc_homepage=''
 nmap <c-x><c-e> <ESC>:AuthorInfoDetect<CR><ESC>
 
 " ===========================================================================
-" window, buffer and tab setting
+" window navigation setting
 " ============================================================================
 
 " Use Ctrl + Up/Down/Left/Right to switch window
@@ -351,16 +359,31 @@ imap <silent> <C-down> <esc><C-W><down>
 vmap <silent> <C-down> <esc><C-W><down>
 nmap <silent> <C-down> <C-W><down>
 
-" Use Shift + Left/Right to swith tab
-" Previous Tab
-"nmap <S-left> :tabprevious<CR>
-" Next Tab
-"nmap <S-right> :tabnext<CR>
+
+" ===========================================================================
+" buffer navigation setting
+" ============================================================================
+
+" Buffer operations:
+" :bn[ext]      => jump to next buffer
+" :bp[revious]  => jump to previous buffer
+" :bw[ipe]      => close current buffer
+
 " Use Shift + Left/Right to swith buffer
 " Previous Buf
 nmap <S-left> :bp<CR>
 " Next Buf
 nmap <S-right> :bn<CR>
+
+" ===========================================================================
+" tab page navigation setting
+" ============================================================================
+
+" Tab operations:
+" :tabn[ext] / C-PageDn / gt      => jump to next tabpage
+" :tabp[revious] / C-PageUp / gT  => jump to previous tabpage
+" :tabc[lose]  => close current tabpage
+" :tabo[nly]   => close all other tabpages
 
 " Creat new tab or Open file in new tab
 nmap <c-x>o :tabnew<CR>
