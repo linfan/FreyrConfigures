@@ -363,7 +363,7 @@ nmap <S-left> :bp<CR>
 nmap <S-right> :bn<CR>
 
 " Creat new tab or Open file in new tab
-nmap <c-x><c-n> :tabnew<CR>
+nmap <c-x>o :tabnew<CR>
 nmap <c-x><c-o> :tabnew ./
 
 " Use Alt + number to switch tab
