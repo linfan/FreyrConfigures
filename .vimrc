@@ -178,8 +178,19 @@ endif
 
 " Add a cscope datebase
 nmap <c-x>p :cs add ./
+" Generate cscope file under current folder
+nmap <c-x><c-p> :!cscope -Rbq <CR>
 
 " cscope shortcuts
+" cscope shortcuts
+" s[ymbol]   => find all references to the token under cursor
+" g[lobal]   => find global definition(s) of the token under cursor
+" c[alls]    => find all calls to the function name under cursor
+" t[ext]     => find all instances of the text under cursor
+" e[grep]    => egrep search for the word under cursor
+" f[ile]     => open the filename under cursor
+" i[ncludes] => find files that include the filename under cursor
+" [calle]d   => find functions that function under cursor calls
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -188,8 +199,6 @@ nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-" Generate cscope file under current folder
-nmap <c-x><c-p> :!cscope -Rbq <CR>
 
 " ============================================================================
 " ctags setting
