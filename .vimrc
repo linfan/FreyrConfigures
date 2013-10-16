@@ -340,7 +340,7 @@ nmap <silent> <F8> :BufExplorer<CR>
 let g:template_path='/home/freyr/.vim/template/'     " Please modify the templates file here
 
 " Ctrl-X Ctrl-T load file template according to file extension
-nmap <c-x><c-t> <ESC>:LoadTemplate<CR><ESC>
+nmap <c-x><c-t> <ESC>:LoadTemplate<CR>
 
 " :AuthorInfoDetect setting (offered by NERD_commenter & authorinfo)
 let g:vimrc_author='LinFan'
@@ -446,6 +446,20 @@ nmap <A-o> o<ESC>
 
 " Reload .vimrc configure without restart vim
 nmap <c-x><c-v> :source ~/.vimrc<CR>
+
+" emacs-like shortcut
+nmap <c-x>c :qall<CR>
+nmap <c-x>s :wall<CR>
+nmap <c-x>k :bw<CR>
+
+" search the word under cursor in all files
+" navigating around the search results
+" :cn     Jump to next result
+" :cp     Jump to previous result
+" :cl     List all search results
+" :cw     List search result in separate window
+" :cc[N]  Jump to [N]th result
+nmap <c-x>r :vimgrep /<C-R>=expand("<cword>")<CR>/ *
 
 " F2 Switch search highlight
 imap <silent> <F2> <esc>:set hlsearch!<CR>
