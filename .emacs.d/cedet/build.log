@@ -1,0 +1,386 @@
+find "/home/freyr/.emacs.d/cedet"/common -type f \
+	-name "*-loaddefs.el" \
+	-print -exec rm -f {} \;
+/home/freyr/.emacs.d/cedet/common/cedet-loaddefs.el
+find "/home/freyr/.emacs.d/cedet"/speedbar -type f \
+	-name "*-loaddefs.el" \
+	-print -exec rm -f {} \;
+/home/freyr/.emacs.d/cedet/speedbar/speedbar-loaddefs.el
+find "/home/freyr/.emacs.d/cedet"/eieio -type f \
+	-name "*-loaddefs.el" \
+	-print -exec rm -f {} \;
+/home/freyr/.emacs.d/cedet/eieio/eieio-loaddefs.el
+find "/home/freyr/.emacs.d/cedet"/semantic -type f \
+	-name "*-loaddefs.el" \
+	-print -exec rm -f {} \;
+/home/freyr/.emacs.d/cedet/semantic/semantic-loaddefs.el
+find "/home/freyr/.emacs.d/cedet"/srecode -type f \
+	-name "*-loaddefs.el" \
+	-print -exec rm -f {} \;
+/home/freyr/.emacs.d/cedet/srecode/srecode-loaddefs.el
+find "/home/freyr/.emacs.d/cedet"/ede -type f \
+	-name "*-loaddefs.el" \
+	-print -exec rm -f {} \;
+/home/freyr/.emacs.d/cedet/ede/ede-loaddefs.el
+find "/home/freyr/.emacs.d/cedet"/cogre -type f \
+	-name "*-loaddefs.el" \
+	-print -exec rm -f {} \;
+/home/freyr/.emacs.d/cedet/cogre/cogre-loaddefs.el
+find "/home/freyr/.emacs.d/cedet"/contrib -type f \
+	-name "*-loaddefs.el" \
+	-print -exec rm -f {} \;
+/home/freyr/.emacs.d/cedet/contrib/contrib-loaddefs.el
+cd "/home/freyr/.emacs.d/cedet"/common && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/common'
+for loadpath in . ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> autoloads-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l autoloads-compile-script -f cedet-batch-update-autoloads cedet-loaddefs.el .
+for loadpath in . ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> init-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l init-compile-script -f batch-byte-compile cedet-load.el
+for loadpath in . ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> setup-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l setup-compile-script -f batch-byte-compile cedet.el
+for loadpath in . ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> common-compile-script; \
+	done;
+for preload in cedet-compat.el; do \
+	   echo "(load \"$preload\")" >> common-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l common-compile-script -f batch-byte-compile cedet-autogen.el cedet-compat.el ezimage.el inversion.el pprint.el fame.el working.el cedet-edebug.el mode-local.el cedet-files.el pulse.el data-debug.el cedet-global.el cedet-idutils.el cedet-cscope.el cedet-graphviz.el cedet-android.el cedet-java.el cedet-m3.el
+for loadpath in . ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> tests-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l tests-compile-script -f batch-byte-compile cedet-utests.el
+make -C icons
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/common/icons'
+make[2]: 没有什么可以做的为 `all'。
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/common/icons'
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/common'
+cd "/home/freyr/.emacs.d/cedet"/speedbar && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/speedbar'
+for loadpath in . ../common/ ; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> autoloads-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l autoloads-compile-script -f cedet-batch-update-autoloads speedbar-loaddefs.el .
+for loadpath in . ../common/ ; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> init-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l init-compile-script -f batch-byte-compile speedbar-load.el
+for loadpath in . ../common/ ; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> speedbar-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l speedbar-compile-script -f batch-byte-compile dframe.el speedbar.el
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/speedbar'
+cd "/home/freyr/.emacs.d/cedet"/eieio && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/eieio'
+for loadpath in . ../common/  ../speedbar/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> autoloads-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l autoloads-compile-script -f cedet-batch-update-autoloads eieio-loaddefs.el .
+for loadpath in . ../common/  ../speedbar/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> init-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l init-compile-script -f batch-byte-compile eieio-load.el
+for loadpath in . ../common/  ../speedbar/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> eieio-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> eieio-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l eieio-compile-script -f batch-byte-compile eieio.el eieio-comp.el eieio-opt.el eieio-custom.el eieio-doc.el eieio-base.el eieio-datadebug.el
+for loadpath in . ../common/  ../speedbar/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> examples-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> examples-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l examples-compile-script -f batch-byte-compile chart.el eieio-speedbar.el linemark.el lmcompile.el
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/eieio'
+cd "/home/freyr/.emacs.d/cedet"/semantic && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/semantic'
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> autoloads-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l autoloads-compile-script -f cedet-batch-update-autoloads semantic-loaddefs.el . bovine wisent ctags symref
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> init-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l init-compile-script -f batch-byte-compile semantic-load.el
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> semantic-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> semantic-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l semantic-compile-script -f batch-byte-compile semantic.el semantic-fw.el semantic-lex.el semantic-lex-spp.el semantic-edit.el semantic-util.el semantic-tag.el semantic-tag-ls.el semantic-find.el semantic-sort.el semantic-tag-file.el semantic-tag-write.el semantic-doc.el semantic-idle.el semantic-custom.el
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> utils-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> utils-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l utils-compile-script -f batch-byte-compile semantic-ast.el semantic-ctxt.el semantic-decorate.el semantic-dep.el semantic-format.el semantic-scope.el
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> Database-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> Database-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l Database-compile-script -f batch-byte-compile semanticdb.el semanticdb-mode.el semanticdb-debug.el semanticdb-ebrowse.el semanticdb-el.el semanticdb-file.el semanticdb-find.el semanticdb-mk.el semanticdb-ref.el semanticdb-search.el semanticdb-typecache.el semanticdb-javascript.el semanticdb-global.el semanticdb-cscope.el semanticdb-javap.el
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> tools-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> tools-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l tools-compile-script -f batch-byte-compile semantic-adebug.el semantic-chart.el semantic-complete.el semantic-debug.el semantic-decorate-mode.el semantic-decorate-include.el semantic-elp.el semantic-grammar.el semantic-ia-sb.el semantic-ia.el semantic-imenu.el semantic-mru-bookmark.el semantic-sb.el semantic-util-modes.el senator.el semantic-m3.el
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> Analyzer-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> Analyzer-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l Analyzer-compile-script -f batch-byte-compile semantic-analyze.el semantic-analyze-complete.el semantic-analyze-fcn.el semantic-analyze-debug.el semantic-analyze-refs.el
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> Languages-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> Languages-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l Languages-compile-script -f batch-byte-compile semantic-texi.el semantic-html.el
+"emacs" -batch --no-site-file -l grammar-make-script -f semantic-grammar-batch-build-packages semantic-grammar.wy
+for loadpath in . ../common/  ctags/ wisent/ bovine/ symref/  ../speedbar/ ../ede/ ../eieio/ ./; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> tests-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l tests-compile-script -f batch-byte-compile semantic-regtest.el semantic-ia-utest.el semantic-utest.el semantic-utest-c.el semantic-fmt-utest.el
+make -C wisent
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/semantic/wisent'
+for loadpath in . ../../speedbar/ ../../common/ ../bovine/ ../ ../../ede/ ../../eieio/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> tools-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l tools-compile-script -f batch-byte-compile bison-wisent.el
+for loadpath in . ../../speedbar/ ../../common/ ../bovine/ ../ ../../ede/ ../../eieio/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> wisent-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l wisent-compile-script -f batch-byte-compile wisent.el semantic-wisent.el wisent-comp.el wisent-expr.el wisent-grammar.el wisent-debug.el wisent-grammar-macros.el
+"emacs" -batch --no-site-file -l grammar-make-script -f semantic-grammar-batch-build-packages wisent-java-tags.wy wisent-awk.wy wisent-calc.wy wisent-cim.wy wisent-java.wy wisent-python.wy wisent-javascript-jv.wy
+for loadpath in . ../../speedbar/ ../../common/ ../bovine/ ../ ../../ede/ ../../eieio/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> languages-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l languages-compile-script -f batch-byte-compile wisent-calc.el wisent-java.el wisent-java-tags.el wisent-python.el wisent-javascript.el
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/semantic/wisent'
+make -C tests
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/semantic/tests'
+make[2]: 没有什么可以做的为 `all'。
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/semantic/tests'
+make -C symref
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/semantic/symref'
+for loadpath in . ../../srecode/ ../../speedbar/ ../../ede/ ../../common/ ../bovine/ ../ ../../eieio/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> symref-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> symref-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l symref-compile-script -f batch-byte-compile semantic-symref.el semantic-symref-global.el semantic-symref-grep.el semantic-symref-list.el semantic-symref-idutils.el semantic-symref-cscope.el semantic-symref-filter.el
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/semantic/symref'
+make -C doc
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/semantic/doc'
+make[2]: 没有什么可以做的为 `all'。
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/semantic/doc'
+make -C ctags
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/semantic/ctags'
+for loadpath in . ../bovine/ ../../eieio/ ../ ../../common/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> ctags-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> ctags-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l ctags-compile-script -f batch-byte-compile semantic-ectag-util.el semantic-ectag-lang.el semantic-ectag-parse.el semanticdb-ectag.el semantic-ectag-lang2.el
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/semantic/ctags'
+make -C bovine
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/semantic/bovine'
+"emacs" -batch --no-site-file -l grammar-make-script -f semantic-grammar-batch-build-packages c.by make.by scheme.by erlang.by f90.by
+for loadpath in . ../../ede/ ../../common/ ../ ../../eieio/ ../wisent/ ../../speedbar/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> bovinator-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l bovinator-compile-script -f batch-byte-compile semantic-bovine.el bovine-grammar.el bovine-debug.el bovine-grammar-macros.el
+for loadpath in . ../../ede/ ../../common/ ../ ../../eieio/ ../wisent/ ../../speedbar/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> languages-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> languages-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l languages-compile-script -f batch-byte-compile semantic-c.el semantic-el.el semantic-make.el semantic-scm.el semantic-java.el semantic-erlang.el semantic-gcc.el semantic-f90.el semantic-clang.el
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/semantic/bovine'
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/semantic'
+cd "/home/freyr/.emacs.d/cedet"/srecode && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/srecode'
+for loadpath in . ../common/  ../ede/ ../semantic/ ../eieio/ ../speedbar/ ../semantic/bovine/ ../semantic/wisent/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> autoloads-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l autoloads-compile-script -f cedet-batch-update-autoloads srecode-loaddefs.el .
+"emacs" -batch --no-site-file -l grammar-make-script -f semantic-grammar-batch-build-packages srecode-template.wy
+for loadpath in . ../common/  ../ede/ ../semantic/ ../eieio/ ../speedbar/ ../semantic/bovine/ ../semantic/wisent/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> srecode-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> srecode-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l srecode-compile-script -f batch-byte-compile srecode.el srecode-mode.el srecode-compile.el srecode-insert.el srecode-template-mode.el srecode-semantic.el srecode-load.el srecode-template.el srecode-dictionary.el srecode-args.el srecode-table.el srecode-filters.el srecode-find.el srecode-ctxt.el srecode-getset.el srecode-cpp.el srecode-expandproto.el srecode-el.el srecode-srt.el srecode-texi.el srecode-map.el srecode-extract.el srecode-java.el srecode-fields.el srecode-android.el srecode-m3.el
+for loadpath in . ../common/  ../ede/ ../semantic/ ../eieio/ ../speedbar/ ../semantic/bovine/ ../semantic/wisent/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> tests-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> tests-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l tests-compile-script -f batch-byte-compile srecode-test.el srecode-test-getset.el
+for loadpath in . ../common/  ../ede/ ../semantic/ ../eieio/ ../speedbar/ ../semantic/bovine/ ../semantic/wisent/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> document-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> document-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l document-compile-script -f batch-byte-compile srecode-document.el srecode-document-vars.el
+make -C templates
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/srecode/templates'
+make[2]: 没有什么可以做的为 `all'。
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/srecode/templates'
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/srecode'
+cd "/home/freyr/.emacs.d/cedet"/ede && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/ede'
+for loadpath in . ../common/  ../srecode/ ../speedbar/ ../eieio/ ../semantic/bovine/ ../semantic/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> autoloads-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l autoloads-compile-script -f cedet-batch-update-autoloads ede-loaddefs.el .
+for loadpath in . ../common/  ../srecode/ ../speedbar/ ../eieio/ ../semantic/bovine/ ../semantic/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> init-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> init-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l init-compile-script -f batch-byte-compile ede-load.el
+for loadpath in . ../common/  ../srecode/ ../speedbar/ ../eieio/ ../semantic/bovine/ ../semantic/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> ede-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> ede-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l ede-compile-script -f batch-byte-compile ede.el ede-auto.el ede-base.el ede-custom.el ede-dired.el ede-source.el ede-util.el ede-system.el ede-speedbar.el ede-srecode.el ede-files.el ede-locate.el ede-make.el ede-shell.el ede-android.el ede-m3.el ede-arduino.el
+for loadpath in . ../common/  ../srecode/ ../speedbar/ ../eieio/ ../semantic/bovine/ ../semantic/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> proj-project-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> proj-project-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l proj-project-compile-script -f batch-byte-compile ede-proj.el ede-pmake.el ede-pconf.el ede-proj-elisp.el ede-proj-misc.el ede-proj-obj.el ede-proj-prog.el ede-proj-archive.el ede-proj-shared.el ede-proj-info.el ede-proj-scheme.el ede-proj-aux.el ede-proj-comp.el
+for loadpath in . ../common/  ../srecode/ ../speedbar/ ../eieio/ ../semantic/bovine/ ../semantic/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> projects-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> projects-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l projects-compile-script -f batch-byte-compile project-am.el ede-cpp-root.el ede-emacs.el ede-linux.el ede-generic.el
+for loadpath in . ../common/  ../srecode/ ../speedbar/ ../eieio/ ../semantic/bovine/ ../semantic/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> aux-lisp-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l aux-lisp-compile-script -f batch-byte-compile autoconf-edit.el autoconf-compat.el makefile-edit.el
+make -C templates
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/ede/templates'
+make[2]: 没有什么可以做的为 `all'。
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/ede/templates'
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/ede'
+cd "/home/freyr/.emacs.d/cedet"/cogre && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/cogre'
+"emacs" -batch --no-site-file -l grammar-make-script -f semantic-grammar-batch-build-packages wisent-dot.wy
+for loadpath in . ../ede/ ../common/ ../semantic/ ../eieio/ ../semantic/wisent/  ../srecode/ ../speedbar/ ../semantic/bovine/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> autoloads-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l autoloads-compile-script -f cedet-batch-update-autoloads cogre-loaddefs.el .
+for loadpath in . ../ede/ ../common/ ../semantic/ ../eieio/ ../semantic/wisent/  ../srecode/ ../speedbar/ ../semantic/bovine/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> init-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> init-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l init-compile-script -f batch-byte-compile cogre-load.el
+for loadpath in . ../ede/ ../common/ ../semantic/ ../eieio/ ../semantic/wisent/  ../srecode/ ../speedbar/ ../semantic/bovine/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> dot-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> dot-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l dot-compile-script -f batch-byte-compile wisent-dot.el cogre-dot-mode.el
+for loadpath in . ../ede/ ../common/ ../semantic/ ../eieio/ ../semantic/wisent/  ../srecode/ ../speedbar/ ../semantic/bovine/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> Mode-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> Mode-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l Mode-compile-script -f batch-byte-compile cogre-mode.el
+for loadpath in . ../ede/ ../common/ ../semantic/ ../eieio/ ../semantic/wisent/  ../srecode/ ../speedbar/ ../semantic/bovine/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> hacks-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l hacks-compile-script -f batch-byte-compile picture-hack.el
+for loadpath in . ../ede/ ../common/ ../semantic/ ../eieio/ ../semantic/wisent/  ../srecode/ ../speedbar/ ../semantic/bovine/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> COGRE-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> COGRE-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l COGRE-compile-script -f batch-byte-compile cogre.el cogre-uml.el cogre-periodic.el cogre-ascii.el cogre-srecode.el cogre-convert.el cogre-layout.el cogre-semantic.el
+for loadpath in . ../ede/ ../common/ ../semantic/ ../eieio/ ../semantic/wisent/  ../srecode/ ../speedbar/ ../semantic/bovine/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> utests-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> utests-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l utests-compile-script -f batch-byte-compile cogre-utest.el
+make -C tests
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/cogre/tests'
+make[2]: 没有什么可以做的为 `all'。
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/cogre/tests'
+make -C templates
+make[2]: 正在进入目录 `/home/freyr/.emacs.d/cedet/cogre/templates'
+make[2]: 没有什么可以做的为 `all'。
+make[2]:正在离开目录 `/home/freyr/.emacs.d/cedet/cogre/templates'
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/cogre'
+cd "/home/freyr/.emacs.d/cedet"/contrib && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/contrib'
+for loadpath in . ../common/  ../ede/ ../semantic/ ../eieio/ ../semantic/bovine/ ../speedbar/ ../semantic/wisent/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> autoloads-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l autoloads-compile-script -f cedet-batch-update-autoloads contrib-loaddefs.el .
+for loadpath in . ../common/  ../ede/ ../semantic/ ../eieio/ ../semantic/bovine/ ../speedbar/ ../semantic/wisent/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> init-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> init-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l init-compile-script -f batch-byte-compile cedet-contrib-load.el
+for loadpath in . ../common/  ../ede/ ../semantic/ ../eieio/ ../semantic/bovine/ ../speedbar/ ../semantic/wisent/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> setup-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l setup-compile-script -f batch-byte-compile cedet-contrib.el
+"emacs" -batch --no-site-file -l grammar-make-script -f semantic-grammar-batch-build-packages wisent-csharp.wy wisent-ruby.wy wisent-php.wy
+for loadpath in . ../common/  ../ede/ ../semantic/ ../eieio/ ../semantic/bovine/ ../speedbar/ ../semantic/wisent/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> lisp-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> lisp-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l lisp-compile-script -f batch-byte-compile wisent-csharp.el semantic-tag-folding.el eassist.el wisent-ruby.el wisent-php.el ede-gnustep.el semantic-ectag-scala.el
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/contrib'
+cd "/home/freyr/.emacs.d/cedet"/tests && make  EMACS="emacs" EMACSFLAGS="-batch --no-site-file" SHELL="/bin/sh"
+make[1]: 正在进入目录 `/home/freyr/.emacs.d/cedet/tests'
+for loadpath in . ../speedbar/ ../cogre/ ../contrib/ ../ede/ ../srecode/ ../semantic/wisent/ ../semantic/bovine/ ../semantic/ ../eieio/ ../common/; do \
+	   echo "(add-to-list 'load-path \"$loadpath\")" >> Lisp-compile-script; \
+	done;
+for preload in cedet-compat; do \
+	   echo "(load \"$preload\")" >> Lisp-compile-script; \
+	done;
+"emacs" -batch --no-site-file -l Lisp-compile-script -f batch-byte-compile cedet-integ-test.el cit-cpp.el cit-el.el cit-texi.el cit-load.el cit-srec.el cit-gnustep.el cit-uml.el cit-dist.el cit-symref.el cit-externaldb.el cit-android.el cit-arduino.el cit-projvar.el
+make[1]:正在离开目录 `/home/freyr/.emacs.d/cedet/tests'
