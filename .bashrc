@@ -59,6 +59,10 @@ function hex-to-dec()
 }
 
 export TINY6410_TOOLCHAIN_PATH=/opt/FriendlyARM/toolschain/4.5.1/bin
-export PATH=${TINY6410_TOOLCHAIN_PATH}:${QT_4_PATH}:${PATH}
+if [ "`echo ${PATH} | grep '/home/freyr/\.bin'`" == "" ]; then
+    export PATH=/home/freyr/.bin:${TINY6410_TOOLCHAIN_PATH}:${QT_4_PATH}:${PATH}
+if
 export PS1="[\t \W]\$ "
-
+export HISTTIMEFORMAT="[%Y-%m-%d_%H:%M:%S] "
+export HISTSIZE=2000
+export HISTFILESIZE=1000000
