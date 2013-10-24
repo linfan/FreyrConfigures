@@ -264,12 +264,14 @@ let g:SrcExpl_winHeight = 8
 let g:SrcExpl_refreshTime = 100 
 " Set "NONE" key to jump into the exact definition context 
 let g:SrcExpl_jumpKey = "" 
-" Set "NONE" key for back from the definition context 
-let g:SrcExpl_gobackKey = "" 
+" Set "<C-h>" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<C-h>"
 " In order to Avoid conflicts, the Source Explorer should know what plugins are using buffers.
 " And you need add their bufname into the list below according to the command ":buffers!" 
 let g:SrcExpl_pluginList = [ 
         \ "__Tag_List__", 
+        \ "__Tagbar__",
+        \ "NERD_tree_1",
         \ "_NERD_tree_", 
         \ "Source_Explorer" 
     \ ] 
@@ -282,10 +284,10 @@ let g:SrcExpl_isUpdateTags = 0
 let g:SrcExpl_updateTagsCmd = "ctags -L cscope.files" 
 " Set "NONE" key for updating the tags file artificially 
 let g:SrcExpl_updateTagsKey = "" 
-" Set "<A-k>" key for displaying the previous definition in the jump list 
-let g:SrcExpl_prevDefKey = "<A-k>" 
-" Set "<C-k>" key for displaying the next definition in the jump list 
-let g:SrcExpl_nextDefKey = "<C-k>" 
+" Set "<C-k>" key for displaying the previous definition in the jump list 
+let g:SrcExpl_prevDefKey = "<C-k>" 
+" Set "<C-j>" key for displaying the next definition in the jump list 
+let g:SrcExpl_nextDefKey = "<C-j>" 
 
 " Use 'se' open Source Explorer
 nmap se :SrcExplToggle<CR>
