@@ -3,7 +3,7 @@
 "         Desc: vim configure file
 "       Author: LinFan
 "        Email: linfan.china@gmail.com
-"   LastChange: 2013-04-20 15:07:39
+"   LastChange: 2013-10-25 15:07:39
 "=============================================================================
 
 " Use Django Template format render .html file
@@ -235,8 +235,8 @@ let Tlist_Use_Right_Window=1                 " Show tags window on the right sid
 let Tlist_File_Fold_Auto_Close=1             " Auto-fold，or Tlist_File_Auto_Close
 let Tlist_GainFocus_On_ToggleOpen = 1        " Move cursor to TList window when opening
 
-" Use 'tl' open Taglist window
-nmap tl :Tlist<CR>
+" Use '\tl' open Taglist window
+nmap \tl :Tlist<CR>
 
 " Use F7 open Taglist window
 imap <silent> <F7> <esc>:TlistToggle<CR>
@@ -245,8 +245,8 @@ nmap <silent> <F7> :TlistToggle<CR>
 " ============================================================================
 " TagBar setting
 " ============================================================================
-" Use 'tb' toggle TagBar window
-nmap tb :TagbarToggle<CR>
+" Use '\tb' toggle TagBar window
+nmap \tb :TagbarToggle<CR>
 let g:tagbar_ctags_bin = 'ctags'             " Set tag program name
 let g:tagbar_width = 30                      " TagBar window width
 let g:tagbar_autofocus = 1                   " Move cursor to TagBar window when opening
@@ -289,8 +289,8 @@ let g:SrcExpl_prevDefKey = "<C-k>"
 " Set "<C-j>" key for displaying the next definition in the jump list 
 let g:SrcExpl_nextDefKey = "<C-j>" 
 
-" Use 'se' open Source Explorer
-nmap se :SrcExplToggle<CR>
+" Use '\se' open Source Explorer
+nmap \se :SrcExplToggle<CR>
 
 " Use F9 open SrcExpl window
 imap <silent> <F9> <esc>:SrcExplToggle<CR>
@@ -306,8 +306,8 @@ let NERDTreeHighlightCursorline=1
 let NERDTreeShowLineNumbers=0
 let NERDTreeWinPos=0	" 0 to show NERDtree window on left, 1 to show on right
 
-" Use 'nt' open NERD_tree
-nmap nt :NERDTreeToggle<CR>
+" Use '\nt' open NERD_tree
+nmap \nt :NERDTreeToggle<CR>
 
 " Use F6 open NERD_tree
 imap <silent> <F6> <esc>:NERDTreeToggle<CR>
@@ -328,8 +328,8 @@ let g:bufExplorerSplitOutPathName=1
 let g:bufExplorerSplitRight=1
 autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
-" Use 'be' open BufExplorer
-nmap be :BufExplorer<CR>
+" Use '\be' open BufExplorer
+nmap \be :BufExplorer<CR>
 
 " Use F8 open BufExplorer
 imap <silent> <F8> <esc>:BufExplorer<CR>
@@ -448,6 +448,10 @@ nmap <A-o> o<ESC>
 
 " Reload .vimrc configure without restart vim
 nmap <c-x><c-v> :source ~/.vimrc<CR>
+
+" Use C-p and C-n to move up/down faster
+nmap <C-p> 5k
+nmap <C-n> 5j
 
 " emacs-like shortcut
 nmap <c-x>c :qall<CR>
