@@ -58,10 +58,27 @@ function hex-to-dec()
     ((decNum=16#${1})); echo ${decNum}
 }
 
+# export new path to variable if not exist
+function exportPathOnce()
+{
+    if [ "`echo ${!1} | grep -o \"${2}\"`" == "" ]; then
+        if [ "${!1}" == "" ]; then
+            export $"${1}"=${2}
+        else
+            export $"${1}"=${2}:${!1}
+        fi
+    fi
+}
+
 export TINY6410_TOOLCHAIN_PATH=/opt/FriendlyARM/toolschain/4.5.1/bin
-if [ "`echo ${PATH} | grep '/home/freyr/\.bin'`" == "" ]; then
-    export PATH=/home/freyr/.bin:${TINY6410_TOOLCHAIN_PATH}:${QT_4_PATH}:${PATH}
-if
+export STAGING_DIR=/home/freyr/App/openwrt-sdk/staging_dir
+BOOST_LIB_PATH="/home/freyr/App/boost_1_54_0/stage/lib"
+exportPathOnce PATH /home/freyr/.bin
+exportPathOnce LD_LIBRARY_PATH ${BOOST_LIB_PATH}
+exportPathOnce LD_LIBRARY_PATH /home/freyr/.lib
+exportPathOnce C_INCLUDE_PATH /home/freyr/.inc
+exportPathOnce CPLUS_INCLUDE_PATH /home/freyr/.inc
+
 export PS1="[\t \W]\$ "
 export HISTTIMEFORMAT="[%Y-%m-%d_%H:%M:%S] "
 export HISTSIZE=2000
