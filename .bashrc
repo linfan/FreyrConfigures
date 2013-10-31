@@ -72,9 +72,10 @@ function exportPathOnce()
 
 export TINY6410_TOOLCHAIN_PATH=/opt/FriendlyARM/toolschain/4.5.1/bin
 export STAGING_DIR=/home/freyr/App/openwrt-sdk/staging_dir
-BOOST_LIB_PATH="/home/freyr/App/boost_1_54_0/stage/lib"
+export Boost_LIBRARY_DIRS="/home/freyr/App/boost_1_54_0/stage/lib"
+export Boost_INCLUDE_DIRS="/home/freyr/.inc"
 exportPathOnce PATH /home/freyr/.bin
-exportPathOnce LD_LIBRARY_PATH ${BOOST_LIB_PATH}
+exportPathOnce LD_LIBRARY_PATH ${Boost_LIBRARY_DIRS}
 exportPathOnce LD_LIBRARY_PATH /home/freyr/.lib
 exportPathOnce C_INCLUDE_PATH /home/freyr/.inc
 exportPathOnce CPLUS_INCLUDE_PATH /home/freyr/.inc
