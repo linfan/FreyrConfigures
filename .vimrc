@@ -179,7 +179,7 @@ endif
 " Add a cscope datebase
 nmap <c-x>p :cs add ./
 " Generate cscope file under current folder
-nmap <c-x><c-p> :!cscope -Rbq <CR>
+nmap <c-x><c-p> :!cscope -Rbq <CR><CR>:cs add ./cscope.out<CR>
 
 " cscope shortcuts
 " cscope shortcuts
@@ -224,7 +224,7 @@ endif
 nmap <c-x>g :set tags+=./
 
 " Generate ctags file under current folder, recommanded by omnicppcomplete
-nmap <c-x><c-g> :!ctags -R --languages=c++ --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+nmap <c-x><c-g> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 
 " ============================================================================
 " Tag list setting
