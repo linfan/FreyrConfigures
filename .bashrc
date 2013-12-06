@@ -17,10 +17,10 @@ alias ftree='~/Script/ftree.sh'
 alias mm='~/Script/mm.sh'
 alias w3m='w3m -M'
 alias minicom='minicom -c on'
-alias dnw2='sudo /home/freyr/App/dnw2/dnw2'
 alias capitalize-all="sed 's/\b[a-z]/\U&/g'"
 alias lowercase-all="sed 's/[A-Z]/\L&/g'"
 alias uppercase-all="sed 's/[a-z]/\U&/g'"
+alias wup='~/Script/who-use-port.sh'
 
 QT_4_PATH=/home/freyr/.Qt4/bin
 QT_5_PATH=/home/freyr/.Qt5/5.0.1/gcc_64/bin
