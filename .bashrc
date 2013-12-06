@@ -83,7 +83,7 @@ exportPathOnce LD_LIBRARY_PATH /home/freyr/.lib
 exportPathOnce C_INCLUDE_PATH /home/freyr/.inc
 exportPathOnce CPLUS_INCLUDE_PATH /home/freyr/.inc
 
-export PS1="[\t \W]\$ "
+export PS1='[\t \u@\h \W]\$ '
 export HISTTIMEFORMAT="[%Y-%m-%d_%H:%M:%S] "
 export HISTSIZE=2000
 export HISTFILESIZE=1000000
