@@ -2,13 +2,11 @@ alias rm='rm -i'
 alias em='emacs -nw'
 alias py='python'
 alias py3='python3'
-alias vi='vim'
+alias vi='vim -i NONE -u NONE'
 alias em='emacs -nw'
 alias ls='ls --color=auto'
 alias ll='ls -l'
 alias pp='ps -ef | head -1; ps -ef | grep -v grep | grep'
-alias g='py3 /home/freyr/workspace/giveaword/giveaword.py'
-alias c='clear'
 alias grep='grep --color=auto'
 alias ngrep='grep -n -H'
 alias fgrep='~/Script/fgrep.sh'
@@ -17,23 +15,12 @@ alias ftree='~/Script/ftree.sh'
 alias mm='~/Script/mm.sh'
 alias w3m='w3m -M'
 alias minicom='minicom -c on'
+alias wup='~/Script/who-use-port.sh'
+
+# Case conversion
 alias capitalize-all="sed 's/\b[a-z]/\U&/g'"
 alias lowercase-all="sed 's/[A-Z]/\L&/g'"
 alias uppercase-all="sed 's/[a-z]/\U&/g'"
-alias wup='~/Script/who-use-port.sh'
-
-QT_4_PATH=/home/freyr/.Qt4/bin
-QT_5_PATH=/home/freyr/.Qt5/5.0.1/gcc_64/bin
-function useQt4()
-{
-    PATH=`echo ${PATH} | sed 's#/home/freyr/.Qt[^:]*:##g'`
-    export PATH=${QT_4_PATH}:${PATH}
-}
-function useQt5()
-{
-    PATH=`echo ${PATH} | sed 's#/home/freyr/.Qt[^:]*:##g'`
-    export PATH=${QT_5_PATH}:${PATH}
-}
 
 # Conversion of number system
 function bin-to-dec()
@@ -59,6 +46,12 @@ function hex-to-bin()
 function hex-to-dec()
 {
     ((decNum=16#${1})); echo ${decNum}
+}
+
+# Calculate a formula
+function calc
+{
+    python -c "print ${*}"
 }
 
 # export new path to variable if not exist
@@ -87,3 +80,13 @@ export PS1='[\t \u@\h \W]\$ '
 export HISTTIMEFORMAT="[%Y-%m-%d_%H:%M:%S] "
 export HISTSIZE=2000
 export HISTFILESIZE=1000000
+
+# enter tmux environment
+#if [ "${SETUP_TMUX}" == "" ]; then
+#    export SETUP_TMUX="YES"
+#    tmux attach
+#    if [ ${?} -ne 0 ]; then
+#        tmux
+#    fi
+#fi
+
