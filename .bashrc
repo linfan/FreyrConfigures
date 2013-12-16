@@ -55,26 +55,58 @@ function calc
 }
 
 # export new path to variable if not exist
+# ${1}: variable name
+# ${2}: value to append
+# ${3}: [optional] original value
 function exportPathOnce()
 {
-    if [ "`echo ${!1} | grep -o \"${2}\"`" == "" ]; then
-        if [ "${!1}" == "" ]; then
-            export $"${1}"=${2}
-        else
-            export $"${1}"=${2}:${!1}
+    if [ "${3}" == "" ]; then
+        if [ "`echo ${!1} | grep -o \"${2}\"`" == "" ]; then
+            if [ "${!1}" == "" ]; then
+                export $"${1}"=${2}
+            else
+                export $"${1}"=${2}:${!1}
+            fi
+        fi
+    else
+        if [ "`echo \"${3}\" | grep -o \"${2}\"`" == "" ]; then
+            export $"${1}"=${2}:${3}
         fi
     fi
 }
+# export path to variable only if specified path exist and is folder
+function exportFolderOnce()
+{
+    if [ -d "${2}" ]; then
+        exportPathOnce "${1}" "${2}" "${3}"
+    fi
+}
+# export user specified applications to system path
+# ${1}: root folder to user applications
+function exportUserPath()
+{
+    if [ "${USER_PATH_EXPORTED}" == "" ]; then
+        export USER_PATH_EXPORTED="YES"
+        for folder in `ls ${1}`; do
+            app_folder="${1}/${folder}"
+            if [ -d ${app_folder} ]; then
+                exportFolderOnce PATH ${app_folder}/bin
+                exportFolderOnce PATH ${app_folder}/sbin
+                exportFolderOnce LD_LIBRARY_PATH ${app_folder}/lib
+                exportFolderOnce LD_LIBRARY_PATH ${app_folder}/lib64
+                exportFolderOnce C_INCLUDE_PATH ${app_folder}/include
+                exportFolderOnce CPLUS_INCLUDE_PATH ${app_folder}/include
+                exportFolderOnce MANPATH ${app_folder}/share/man `manpath`
+            fi
+        done
+    fi
+}
 
-export TINY6410_TOOLCHAIN_PATH=/opt/FriendlyARM/toolschain/4.5.1/bin
-export STAGING_DIR=/home/freyr/App/openwrt-sdk/staging_dir
+exportUserPath /home/freyr/app
+
 export Boost_LIBRARY_DIRS="/home/freyr/App/boost_1_54_0/stage/lib"
 export Boost_INCLUDE_DIRS="/home/freyr/.inc"
-exportPathOnce PATH /home/freyr/.bin
 exportPathOnce LD_LIBRARY_PATH ${Boost_LIBRARY_DIRS}
-exportPathOnce LD_LIBRARY_PATH /home/freyr/.lib
-exportPathOnce C_INCLUDE_PATH /home/freyr/.inc
-exportPathOnce CPLUS_INCLUDE_PATH /home/freyr/.inc
 
 export PS1='[\t \u@\h \W]\$ '
 export HISTTIMEFORMAT="[%Y-%m-%d_%H:%M:%S] "
