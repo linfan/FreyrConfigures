@@ -9,13 +9,13 @@ alias ll='ls -l'
 alias pp='ps -ef | head -1; ps -ef | grep -v grep | grep'
 alias grep='grep --color=auto'
 alias ngrep='grep -n -H'
-alias fgrep='~/Script/fgrep.sh'
+alias fgrep='${HOME}/Script/fgrep.sh'
 alias pgrep="ps -ef | head -1; ps -ef | grep -v grep | grep --color=auto -i"
-alias ftree='~/Script/ftree.sh'
-alias mm='~/Script/mm.sh'
+alias ftree='${HOME}/Script/ftree.sh'
+alias mm='${HOME}/Script/mm.sh'
 alias w3m='w3m -M'
 alias minicom='minicom -c on'
-alias wup='~/Script/who-use-port.sh'
+alias wup='${HOME}/Script/who-use-port.sh'
 
 # Case conversion
 alias capitalize-all="sed 's/\b[a-z]/\U&/g'"
@@ -101,13 +101,25 @@ function exportUserPath()
         done
     fi
 }
+# update the user application folder to system paths
+function flushUserAppFolders()
+{
+    if [ "${1}" != "init" ]; then
+        unset USER_PATH_EXPORTED
+    fi
+    exportUserPath ${HOME}/app
+}
+flushUserAppFolders "init"
 
-exportUserPath /home/freyr/app
+# Boost support
+export Boost_LIBRARY_DIR="/home/admin/app/boost_1_55_0/lib"
+export Boost_INCLUDE_DIR="/home/admin/app/boost_1_55_0/include"
+export BOOST_ROOT="/home/admin/app/boost_1_55_0"
 
-export Boost_LIBRARY_DIRS="/home/freyr/App/boost_1_54_0/stage/lib"
-export Boost_INCLUDE_DIRS="/home/freyr/.inc"
-exportPathOnce LD_LIBRARY_PATH ${Boost_LIBRARY_DIRS}
-
+# Muduo support
+export MUDUO_BASH_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_base.a
+export MUDUO_NET_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_net.a
+export MUDUO_HTTP_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_http.a
 export PS1='[\t \u@\h \W]\$ '
 export HISTTIMEFORMAT="[%Y-%m-%d_%H:%M:%S] "
 export HISTSIZE=2000
