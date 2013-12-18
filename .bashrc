@@ -133,6 +133,8 @@ export BOOST_ROOT="/home/admin/app/boost_1_55_0"
 export MUDUO_BASH_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_base.a
 export MUDUO_NET_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_net.a
 export MUDUO_HTTP_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_http.a
+
+# Bash configure
 export PS1='[\t \u@\h \W]\$ '
 export HISTTIMEFORMAT="[%Y-%m-%d_%H:%M:%S] "
 export HISTSIZE=2000
