@@ -85,8 +85,8 @@ function exportFolderOnce()
 # ${1}: root folder to user applications
 function exportUserPath()
 {
-    if [ "${USER_PATH_EXPORTED}" == "" ]; then
-        export USER_PATH_EXPORTED="YES"
+    if [ "${_IS_USER_PATH_EXPORTED}" == "" ]; then
+        export _IS_USER_PATH_EXPORTED="YES"
         for folder in `ls ${1}`; do
             app_folder="${1}/${folder}"
             if [ -d ${app_folder} ]; then
@@ -104,12 +104,25 @@ function exportUserPath()
 # update the user application folder to system paths
 function flushUserAppFolders()
 {
-    if [ "${1}" != "init" ]; then
-        unset USER_PATH_EXPORTED
+    if [ "${_IS_USER_PATH_EXPORTED}" == "" ]; then
+        # Keep the original value
+        export _ORIGINAL_PATH=${PATH}
+        export _ORIGINAL_LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
+        export _ORIGINAL_C_INCLUDE_PATH=${C_INCLUDE_PATH}
+        export _ORIGINAL_CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH}
+        export _ORIGINAL_MANPATH=${MANPATH}
+    else
+        # restore to original status
+        export PATH=${_ORIGINAL_PATH}
+        export LD_LIBRARY_PATH=${_ORIGINAL_LD_LIBRARY_PATH}
+        export C_INCLUDE_PATH=${_ORIGINAL_C_INCLUDE_PATH}
+        export CPLUS_INCLUDE_PATH=${_ORIGINAL_CPLUS_INCLUDE_PATH}
+        export MANPATH=${_ORIGINAL_MANPATH}
+        unset _IS_USER_PATH_EXPORTED
     fi
     exportUserPath ${HOME}/app
 }
-flushUserAppFolders "init"
+flushUserAppFolders
 
 # Boost support
 export Boost_LIBRARY_DIR="/home/admin/app/boost_1_55_0/lib"
@@ -126,8 +139,8 @@ export HISTSIZE=2000
 export HISTFILESIZE=1000000
 
 # enter tmux environment
-#if [ "${SETUP_TMUX}" == "" ]; then
-#    export SETUP_TMUX="YES"
+#if [ "${_IS_SETUP_TMUX}" == "" ]; then
+#    export _IS_SETUP_TMUX="YES"
 #    tmux attach
 #    if [ ${?} -ne 0 ]; then
 #        tmux
