@@ -125,14 +125,15 @@ function flushUserAppFolders()
 flushUserAppFolders
 
 # Boost support
-export Boost_LIBRARY_DIR="/home/admin/app/boost_1_55_0/lib"
-export Boost_INCLUDE_DIR="/home/admin/app/boost_1_55_0/include"
 export BOOST_ROOT="/home/admin/app/boost_1_55_0"
+export Boost_LIBRARY_DIR="${BOOST_ROOT}/lib"
+export Boost_INCLUDE_DIR="${BOOST_ROOT}/include"
 
 # Muduo support
-export MUDUO_BASH_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_base.a
-export MUDUO_NET_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_net.a
-export MUDUO_HTTP_LIB=/home/admin/app/muduo-0.9.6/lib/libmuduo_http.a
+export MUDUO_ROOT="/home/admin/app/muduo-0.9.6"
+export MUDUO_BASH_LIB="${MUDUO_ROOT}/lib/libmuduo_base.a"
+export MUDUO_NET_LIB="${MUDUO_ROOT}/lib/libmuduo_net.a"
+export MUDUO_HTTP_LIB="${MUDUO_ROOT}/lib/libmuduo_http.a"
 
 # Bash configure
 export PS1='[\t \u@\h \W]\$ '
