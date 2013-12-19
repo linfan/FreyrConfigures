@@ -83,11 +83,12 @@ function exportFolderOnce()
 }
 # export user specified applications to system path
 # ${1}: root folder to user applications
+#       folder end with _OFF will be ignored
 function exportUserPath()
 {
     if [ "${_IS_USER_PATH_EXPORTED}" == "" ]; then
         export _IS_USER_PATH_EXPORTED="YES"
-        for folder in `ls ${1}`; do
+        for folder in `ls ${1} | grep -v '_OFF$'`; do
             app_folder="${1}/${folder}"
             if [ -d ${app_folder} ]; then
                 exportFolderOnce PATH ${app_folder}/bin
