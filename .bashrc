@@ -125,6 +125,19 @@ function flushUserAppFolders()
 }
 flushUserAppFolders
 
+# return a string like --prefix=${HOME}/app/app-name-version
+# ${1}: use "cmake" if want to get cmake-style prefix parameter
+function getPrefix()
+{
+    app_folder=`pwd`
+    app_folder=${app_folder##*/}
+    if [ "${1}" == "cmake" ]; then
+        echo "-DCMAKE_INSTALL_PREFIX=${HOME}/app/${app_folder}"
+    else
+        echo "--prefix=${HOME}/app/${app_folder}"
+    fi
+}
+
 # Boost support
 export BOOST_ROOT="/home/admin/app/boost_1_55_0"
 export Boost_LIBRARY_DIR="${BOOST_ROOT}/lib"
@@ -138,7 +151,9 @@ export MUDUO_HTTP_LIB="${MUDUO_ROOT}/lib/libmuduo_http.a"
 
 # Bash configure
 export PS1='[\t \u@\h \W]\$ '
+# Keep timestamp of command executed
 export HISTTIMEFORMAT="[%Y-%m-%d_%H:%M:%S] "
+# Enlarge history record amount
 export HISTSIZE=2000
 export HISTFILESIZE=1000000
 
