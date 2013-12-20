@@ -1,4 +1,9 @@
 #!/bin/bash
+#File - mm.sh
+#Author - Freyr Lin
+#Email - linfan.china@gmail.com
+#Version - v1.0
+#Last modified - 2013/12/20
 # Create main.cc file, use vim open it, then try build and run it
 
 function usage

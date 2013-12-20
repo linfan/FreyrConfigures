@@ -1,5 +1,17 @@
 #!/bin/bash
-# Usage: who-use-port [-t|-u|-a] [port]
+#File - who-use-port.sh
+#Author - Freyr Lin
+#Email - linfan.china@gmail.com
+#Version - v1.0
+#Last modified - 2013/12/20
+# Show which process using the specified port
+
+function usage()
+{
+    cat << EOUSAGE
+Usage: who-use-port [-t|-u|-a] [port]
+EOUSAGE
+}
                                                                                                                                                                                               
 PFLAG="tu"
 case ${1} in
@@ -14,6 +26,10 @@ case ${1} in
     -a )
     PFLAG=""
     shift
+    ;;
+    -h )
+    usage
+    exit 0
     ;;
 esac
 if [ "${1}" == "" ]; then
