@@ -1,0 +1,2 @@
+All scripts have been merged to repository https://github.com/linfan/FreyrScripts
+This repository will only keep my configure files.
