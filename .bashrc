@@ -158,11 +158,10 @@ export HISTSIZE=2000
 export HISTFILESIZE=1000000
 
 # enter tmux environment
-#if [ "${_IS_SETUP_TMUX}" == "" ]; then
-#    export _IS_SETUP_TMUX="YES"
-#    tmux attach
-#    if [ ${?} -ne 0 ]; then
-#        tmux
-#    fi
-#fi
+if [ "${TMUX}" == "" ]; then
+    tmux attach
+    if [ ${?} -ne 0 ]; then
+        tmux
+    fi
+fi
 
