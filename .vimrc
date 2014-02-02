@@ -135,7 +135,7 @@ endif
 " ============================================================================
 " Status bar setting
 " ============================================================================
-set laststatus=2             " Enable status message
+set laststatus=2             " Always show status message
 set cmdheight=1              " Set status bar heigh to 1
 
 " ============================================================================
