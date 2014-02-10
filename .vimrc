@@ -323,7 +323,7 @@ nmap <silent> <F6> :NERDTreeToggle<cr>
 " ============================================================================
 " buf explorer setting
 " ============================================================================
-"let g:bufExplorerDefaultHelp=0           " Do not show default help
+let g:bufExplorerDefaultHelp=0           " Do not show default help
 let g:bufExplorerFindActive=1
 let g:bufExplorerReverseSort=0
 let g:bufExplorerShowDirectories=1
