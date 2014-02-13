@@ -271,8 +271,8 @@ let g:SrcExpl_winHeight = 8
 let g:SrcExpl_refreshTime = 100 
 " Set "NONE" key to jump into the exact definition context 
 let g:SrcExpl_jumpKey = "" 
-" Set "<C-h>" key for back from the definition context 
-let g:SrcExpl_gobackKey = "<C-h>"
+" Set "<C-x> t" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<C-x>t"
 " In order to Avoid conflicts, the Source Explorer should know what plugins are using buffers.
 " And you need add their bufname into the list below according to the command ":buffers!" 
 let g:SrcExpl_pluginList = [ 
@@ -291,10 +291,10 @@ let g:SrcExpl_isUpdateTags = 0
 let g:SrcExpl_updateTagsCmd = "ctags -L cscope.files" 
 " Set "NONE" key for updating the tags file artificially 
 let g:SrcExpl_updateTagsKey = "" 
-" Set "<C-k>" key for displaying the previous definition in the jump list 
-let g:SrcExpl_prevDefKey = "<C-k>" 
-" Set "<C-j>" key for displaying the next definition in the jump list 
-let g:SrcExpl_nextDefKey = "<C-j>" 
+" Set "<C-x> p" key for displaying the previous definition in the jump list 
+let g:SrcExpl_prevDefKey = "<C-x>p" 
+" Set "<C-x> n" key for displaying the next definition in the jump list 
+let g:SrcExpl_nextDefKey = "<C-x>n" 
 
 " Use '\se' open Source Explorer
 nmap <leader>se :SrcExplToggle<cr>
@@ -323,7 +323,7 @@ nmap <silent> <F6> :NERDTreeToggle<cr>
 " ============================================================================
 " buf explorer setting
 " ============================================================================
-"let g:bufExplorerDefaultHelp=0           " Do not show default help
+let g:bufExplorerDefaultHelp=0           " Do not show default help
 let g:bufExplorerFindActive=1
 let g:bufExplorerReverseSort=0
 let g:bufExplorerShowDirectories=1
