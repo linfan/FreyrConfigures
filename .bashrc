@@ -1,4 +1,6 @@
 alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 alias em='emacs -nw'
 alias py='python'
 alias py3='python3'
