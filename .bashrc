@@ -18,45 +18,13 @@ alias mm='${HOME}/Script/mm.sh'
 alias w3m='w3m -M'
 alias minicom='minicom -c on'
 alias wup='${HOME}/Script/who-use-port.sh'
+alias receive-file-from='${HOME}/Script/ssh_server/receive-file-from.sh'
+alias send-file-to='${HOME}/Script/ssh_server/send-file-to.sh'
+alias ssh-to='${HOME}/Script/ssh_server/ssh-to.sh'
+alias ssh-target='${HOME}/Script/ssh_server/ssh-target.sh'
 
-# Case conversion
-alias capitalize-all="sed 's/\b[a-z]/\U&/g'"
-alias lowercase-all="sed 's/[A-Z]/\L&/g'"
-alias uppercase-all="sed 's/[a-z]/\U&/g'"
-
-# Conversion of number system
-function bin-to-dec()
-{
-    ((decNum=2#${1})); echo ${decNum} 
-}
-function bin-to-hex()
-{
-    dec-to-hex `bin-to-dec ${1}` 
-}
-function dec-to-bin()
-{ 
-    echo "obase=2;${1}" | bc 
-}
-function dec-to-hex()
-{
-    echo "obase=16;${1}" | bc
-}
-function hex-to-bin()
-{
-    dec-to-bin `hex-to-dec ${1}`
-}
-function hex-to-dec()
-{
-    ((decNum=16#${1})); echo ${decNum}
-}
-
-# Calculate a formula
-function calc
-{
-    python -c "print ${*}"
-}
-
-source ${HOME}/Script/load-user-apps.sh
+source ${HOME}/Script/func/calc.sh
+source ${HOME}/Script/func/load-user-apps.sh
 flushUserAppFolders
 
 # Boost support
