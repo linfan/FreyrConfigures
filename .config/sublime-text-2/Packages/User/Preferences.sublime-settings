@@ -1,8 +1,18 @@
 {
     "font_face": "WenQuanYi Micro Hei Mono",
+    "font_size": 11,
     "default_line_ending": "unix",
+    "fallback_encoding": "UTF-8",
     "tab_size": 4,
+    "rulers": [110],
+    "use_tab_stops": true,
+    "shift_tab_unindent": true,
     "translate_tabs_to_spaces": true,
+    "trim_automatic_white_space": true,
+    "trim_trailing_white_space_on_save": true,
+    "ensure_newline_at_eof_on_save": true,
+    "draw_white_space": "all",
     "ignored_packages": [ ],
-    "vintage_ctrl_keys": true
+    "vintage_ctrl_keys": true,
+    "word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
 }
