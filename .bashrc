@@ -35,8 +35,10 @@ alias ssh-to='${HOME}/${SCRIPT_FOLDER}/ssh_server/ssh-to.sh'
 alias ssh-target='${HOME}/${SCRIPT_FOLDER}/ssh_server/ssh-target.sh'
 
 source ${HOME}/${SCRIPT_FOLDER}/func/calc.sh
-source ${HOME}/${SCRIPT_FOLDER}/func/load-user-apps.sh
-flushUserAppFolders
+
+# Load custom applications
+BINS=`ls ${HOME}/Apps/*/bin | grep "^${HOME}/Apps" | grep -v '_OFF/bin:$' | tr -d '\n'`
+export PATH=${BINS}${PATH}
 
 # Bash configure
 export PS1='[\t \W]\$ '
